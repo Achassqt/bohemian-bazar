@@ -3,47 +3,51 @@ import close from "../../assets/img-test/close.jpg";
 function Categories() {
   const categories = [
     {
-      img: <img src={close} alt="provisory close" />,
+      img: close,
       title: "ROBES",
     },
     {
-      img: <img src={close} alt="provisory close" />,
+      img: close,
       title: "JUPES",
     },
     {
-      img: <img src={close} alt="provisory close" />,
+      img: close,
       title: "MAILLE",
     },
     {
-      img: <img src={close} alt="provisory close" />,
+      img: close,
       title: "BLOUSES & TOPS",
     },
     {
-      img: <img src={close} alt="provisory close" />,
+      img: close,
       title: "VESTES & MANTEAUX",
     },
     {
-      img: <img src={close} alt="provisory close" />,
+      img: close,
       title: "PANTALONS & COMBI",
     },
     {
-      img: <img src={close} alt="provisory close" />,
+      img: close,
       title: "BIJOUX & ACCESSOIRES",
     },
     {
-      img: <img src={close} alt="provisory close" />,
+      img: close,
       title: "DÉCORATION",
     },
   ];
 
   return (
-    <section>
+    <section className="cards">
       {categories.map((category) => {
         return (
-          <div>
-            {category.img}
-            <h2>{category.title}</h2>
-          </div>
+          <a className="cards__card-link" href="piff">
+            <div className="cards__card-link__content">
+              <img src={category.img} alt="provisory close" />
+              <h2 className="cards__card-link__content__title-container">
+                <span>{category.title}</span>
+              </h2>
+            </div>
+          </a>
         );
       })}
     </section>

@@ -1,3 +1,28 @@
-// .head-band {
-//   background-color: ;
-// }
+.head-band {
+  background-color: black;
+  color: white;
+  font-family: "Trocchi";
+  //   height: 30px;
+  padding: 5px 20px;
+  overflow: hidden;
+
+  &__txt {
+    font-size: 20px;
+    white-space: nowrap;
+    transform: translateX(110%);
+    animation: translateX 20s linear infinite;
+
+    @include tablette {
+      font-size: 24px;
+    }
+  }
+}
+
+@keyframes translateX {
+  0% {
+    transform: translateX(140%);
+  }
+  100% {
+    transform: translateX(-1000px);
+  }
+}

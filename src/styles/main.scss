@@ -1,11 +1,18 @@
 // utils
+@import "utils/mixin";
 
 // base
+@import "base/normalize";
+@import "base/typography";
 
 // layout
 @import "layout/headBand";
 @import "layout/header";
+@import "layout/footer";
 
 // components
+@import "components/carousel";
+@import "components/categories";
 
 // pages
+@import "pages/home";

@@ -1,0 +1,55 @@
+.purchase-infos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 20px;
+  margin-bottom: 40px;
+  margin-top: 20px;
+  border-top: 3px solid black;
+
+  @include tablette {
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+
+  @include laptop {
+    margin-bottom: 60px;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  &__logo {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 17px;
+
+    @include tablette {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  &__title {
+    margin: 0;
+    font-family: "Handlee";
+    font-size: 18px;
+    margin-bottom: 5px;
+
+    @include tablette {
+      font-size: 21px;
+    }
+  }
+  &__subtitle {
+    font-family: "Trocchi";
+    text-align: center;
+
+    @include tablette {
+      font-size: 18px;
+    }
+  }
+}

@@ -1,3 +1,67 @@
-// .header {
-//   background-color: red;
-// }
+.header {
+  &__top {
+    // background-color: red;
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+  }
+}
+
+.logo-bb {
+  display: flex;
+  justify-content: center;
+  & > img {
+    width: 300px;
+    @include tablette {
+      width: 400px;
+    }
+  }
+}
+
+.navbar {
+  overflow-x: auto;
+  display: flex;
+}
+
+.categories {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  height: 60px;
+  // width: 100%;
+  padding: 0 5px;
+  font-family: "Handlee";
+  font-weight: bold;
+
+  @include tablette {
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+  &__category {
+    display: flex;
+    align-items: center;
+    max-width: fit-content;
+    text-align: center;
+
+    // &:hover {
+    //   background-color: grey;
+    // }
+    &--link {
+      font-size: 18px;
+      padding: 5px 15px;
+
+      @include laptop {
+        font-size: 21px;
+      }
+    }
+  }
+}
+
+.subcategories {
+  display: none;
+  &__subcategory {
+    &--link {
+    }
+  }
+}

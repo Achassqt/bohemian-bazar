@@ -1,3 +1,5 @@
+import logo from "../../assets/logo_site_web_bohemian-bazar.svg";
+
 function Header() {
   const categories = [
     {
@@ -73,9 +75,8 @@ function Header() {
         ></input>
         <button type="submit"></button>
       </form> */}
-        <div className="logo">
-          <h1 className="logo__title">Bohemian Bazar</h1>
-          <span className="logo__subtitle">Concept Store</span>
+        <div className="logo-bb">
+          <img src={logo} alt="Bohemian Bazar" />
         </div>
         {/* <div className="customer">
         <div className="customer__account">Logo</div>
@@ -83,16 +84,26 @@ function Header() {
       </div> */}
       </div>
       <nav className="navbar">
-        <ul>
+        <ul className="categories">
           {categories.map((category) => {
             return (
-              <li key={category.title}>
-                <a href={category.link}>{category.title}</a>
-                <ul>
+              <li className="categories__category" key={category.title}>
+                <a className="categories__category--link" href={category.link}>
+                  {category.title}
+                </a>
+                <ul className="subcategories">
                   {category.subcategories.map((subcategory) => {
                     return (
-                      <li key={`${category.title}-${subcategory.title}`}>
-                        <a href="fezz">{subcategory.title}</a>
+                      <li
+                        className="subcategories__subcategory"
+                        key={`${category.title}-${subcategory.title}`}
+                      >
+                        <a
+                          className="subcategories__subcategory--link"
+                          href="fezz"
+                        >
+                          {subcategory.title}
+                        </a>
                       </li>
                     );
                   })}

@@ -1,10 +1,10 @@
 function HeadBand() {
   return (
     <div className="head-band">
-      <span>
+      <div className="head-band__txt">
         Frais de port offerts dès 80€ par mondial Relay - RETOURS GRATUITS - Pas
         de remboursement
-      </span>
+      </div>
     </div>
   );
 }

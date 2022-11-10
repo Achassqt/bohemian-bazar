@@ -1,0 +1,91 @@
+.footer {
+  background-color: black;
+  color: white;
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    padding-bottom: 0;
+
+    @include tablette {
+      flex-direction: row;
+      justify-content: space-around;
+      gap: 20px;
+    }
+    @include laptop {
+      margin-bottom: 10px;
+    }
+    &__content {
+      list-style-type: none;
+      margin-bottom: 25px;
+      width: fit-content;
+
+      @include tablette {
+        flex: 1;
+        max-width: 300px;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &__title {
+        font-family: "Handlee";
+        color: #bab5af;
+        margin: 0;
+        font-size: 18px;
+        margin-bottom: 15px;
+        width: fit-content;
+
+        @include laptop {
+          font-size: 21px;
+        }
+      }
+      &__list {
+        font-family: "Trocchi";
+        width: fit-content;
+        & > li {
+          margin-bottom: 5px;
+          width: fit-content;
+
+          @include laptop {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+
+  &__social-network {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 20px 35px;
+
+    @include tablette {
+      max-width: 230px;
+      margin: auto;
+    }
+    &--facebook {
+    }
+    &--insta {
+      position: relative;
+      top: 4px;
+    }
+    &--whatsapp {
+      background-color: white;
+      color: black;
+    }
+  }
+}
+
+.logo {
+  padding: 8px;
+  border-radius: 50%;
+  border: 1px solid white;
+  width: 30px;
+  height: 30px;
+  & > svg {
+    width: inherit;
+    height: inherit;
+  }
+}
