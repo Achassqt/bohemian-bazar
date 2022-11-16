@@ -1,11 +1,68 @@
-.carousel {
-  // width: 100%;
-  // height: 180px;
+.slide-container:hover .indicator {
+  transform: scale(1);
+
+  @include laptop {
+    // padding: 0 20px;
+  }
+}
+
+.indicator {
+  font-family: "Handlee";
+  font-size: 25px;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+
+  @include mobileL {
+    width: 38px;
+    height: 38px;
+    font-size: 35px;
+  }
+  @include tablette {
+    width: 55px;
+    height: 55px;
+    font-size: 50px;
+  }
+
+  @include laptop {
+    width: 70px;
+    height: 70px;
+    font-size: 60px;
+    transform: scale(0);
+    transition: transform 200ms;
+  }
+
+  &--left {
+    margin-left: 10px;
+    @include laptop {
+      margin-left: 35px;
+    }
+  }
+
+  &--right {
+    margin-right: 10px;
+    @include laptop {
+      margin-right: 35px;
+    }
+  }
+}
+
+.each-slide {
+}
+
+.image-container {
+  @include laptop {
+    padding: 0 20px;
+  }
   & > img {
     width: 100%;
-    height: auto;
-    max-height: 500px;
-    // min-height: 275px;
-    // object-fit: cover;
+    pointer-events: none;
+
+    @include laptop {
+      border-radius: 20px;
+    }
   }
 }

@@ -7,14 +7,18 @@ import Categories from "../../components/Categories";
 import present from "../../assets/cadeau.svg";
 import padlock from "../../assets/padlock.svg";
 import delivery from "../../assets/delivery.svg";
+import { useState } from "react";
 
 function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <>
       <HeadBand />
-      <Header />
-      <Carousel />
-      <Categories />
+      <div className="test">
+        <Header setMenuOpen={setMenuOpen} />
+        <Carousel menuOpen={menuOpen} />
+        <Categories />
+      </div>
       <section className="purchase-infos">
         <div className="info">
           <img src={present} alt="cadeau" className="info__logo" />
