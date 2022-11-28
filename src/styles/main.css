@@ -641,9 +641,20 @@ ul {
   height: inherit;
 }
 
+.slide-container {
+  position: relative;
+}
+
 .slide-container:hover .indicator {
   transform: scale(1);
 }
+.file-form {
+  position: absolute;
+  z-index: 2;
+  left: 40px;
+  top: 20px;
+}
+
 .indicator {
   font-family: "Handlee";
   font-size: 25px;
@@ -694,13 +705,22 @@ ul {
   }
 }
 
+.image-container {
+  position: relative;
+}
 @media (min-width: 1024px) {
   .image-container {
     padding: 0 20px;
   }
 }
+.image-container > button {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+}
 .image-container > img {
   width: 100%;
+  max-height: 770px;
   pointer-events: none;
 }
 @media (min-width: 1024px) {
@@ -780,6 +800,9 @@ ul {
   justify-content: center;
 }
 .cards__card-link__content__title-container > span {
+  text-transform: uppercase;
+  word-spacing: 200px;
+  word-wrap: break-word;
   font-size: 16px;
   font-family: "Handlee";
   text-align: center;
@@ -859,4 +882,80 @@ ul {
   .info__subtitle {
     font-size: 18px;
   }
+}
+
+.admin-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  scroll-behavior: none;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(122, 122, 122, 0.8);
+}
+
+.admin-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 320px;
+  width: 70%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  font-family: "Trocchi";
+}
+@media (min-width: 768px) {
+  .admin-container {
+    width: 90%;
+    max-width: 1100px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .form {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
+.form__input {
+  width: 70%;
+  min-width: 200px;
+  border: solid 2px black;
+  font-size: 25px;
+  padding: 20px;
+  margin-top: 20px;
+}
+@media (min-width: 768px) {
+  .form__input {
+    margin: 0;
+    width: 30%;
+  }
+}
+.form__button {
+  font-size: 20px;
+  padding: 10px;
+  margin: 20px 0;
+}
+@media (min-width: 768px) {
+  .form__button {
+    margin: 0;
+  }
+}
+
+.logout {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.logout__btn {
+  font-size: 20px;
+  padding: 10px;
 }/*# sourceMappingURL=main.css.map */

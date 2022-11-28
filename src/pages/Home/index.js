@@ -7,17 +7,22 @@ import Categories from "../../components/Categories";
 import present from "../../assets/cadeau.svg";
 import padlock from "../../assets/padlock.svg";
 import delivery from "../../assets/delivery.svg";
+import { Outlet } from "react-router-dom";
 import { useState } from "react";
+import useSWR from "swr";
 
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const { data: userId } = useSWR(`${process.env.REACT_APP_API_URL}jwtid`);
+  // console.log(userId);
   return (
     <>
       <HeadBand />
       <div className="test">
         <Header setMenuOpen={setMenuOpen} />
-        <Carousel menuOpen={menuOpen} />
-        <Categories />
+        <Carousel userId={userId} menuOpen={menuOpen} />
+        <Categories userId={userId} />
       </div>
       <section className="purchase-infos">
         <div className="info">
@@ -39,6 +44,8 @@ function Home() {
         </div>
       </section>
       <Footer />
+
+      <Outlet />
     </>
   );
 }
