@@ -3,9 +3,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import Admin, { action as login } from "./pages/Admin";
 import { action as uploadCarouselImg } from "./components/Carousel/index";
-import useSWR, { SWRConfig } from "swr";
+import { SWRConfig } from "swr";
 import axios from "axios";
-import { useState } from "react";
 import { mutate } from "swr";
 
 const router = createBrowserRouter([
@@ -14,10 +13,6 @@ const router = createBrowserRouter([
     element: <Home />,
     action: uploadCarouselImg,
     children: [
-      // {
-      //   path: "carousel",
-      //   action: uploadCarouselImg,
-      // },
       {
         path: "admin",
         element: <Admin />,
@@ -27,8 +22,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-const fetcher = (url) =>
-  axios
+const fetcher = async (url) =>
+  await axios
     .get(url, {
       withCredentials: true,
     })

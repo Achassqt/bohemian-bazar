@@ -20,8 +20,11 @@
     gap: 45px;
   }
 
-  &__card-link {
-    // display: block;
+  &__card {
+    position: relative;
+    width: 175px;
+    font-family: "Handlee";
+
     @include mobileL {
       flex: 30%;
       // max-width: 160px;
@@ -34,51 +37,65 @@
       // flex: 30%;
       max-width: 250px;
     }
-    &__content {
-      width: 175px;
-      position: relative;
+
+    &__btn-delete {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 5px 9px 2px;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    &--link {
+      display: block;
+      width: inherit;
 
       @include mobileL {
-        width: inherit;
-      }
-
-      & > img {
         width: 100%;
-        // height: auto;
-        display: block;
-        border-radius: 10px;
       }
-      &__title-container {
-        margin: 0;
-        position: absolute;
-        top: 60%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        //   background-color: #ffffff99;
-        background-color: rgba(255, 255, 255, 0.7);
-        width: 80%;
-        height: 35%;
-        padding: 10px;
-        box-sizing: border-box;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    }
 
-        & > span {
-          text-transform: uppercase;
-          word-spacing: 200px;
-          word-wrap: break-word;
-          font-size: 16px;
-          font-family: "Handlee";
-          text-align: center;
+    &__img {
+      width: 100%;
+      // height: auto;
+      display: block;
+      border-radius: 10px;
+    }
+    &__title-container {
+      margin: 0;
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      //   background-color: #ffffff99;
+      background-color: rgba(255, 255, 255, 0.7);
+      width: 80%;
+      height: 35%;
+      padding: 10px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-          @include tablette {
-            font-size: 18px;
-          }
+      & > span {
+        text-transform: uppercase;
+        word-spacing: 200px;
+        word-wrap: break-word;
+        font-size: 16px;
+        // font-family: "Handlee";
+        text-align: center;
 
-          @include laptop {
-            font-size: 21px;
-          }
+        @include tablette {
+          font-size: 18px;
+        }
+
+        @include laptop {
+          font-size: 21px;
         }
       }
     }

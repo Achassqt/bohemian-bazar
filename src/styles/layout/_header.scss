@@ -8,6 +8,7 @@
     background-color: rgba($color: #ffffff, $alpha: 0.8);
     height: 100vh;
     width: 100%;
+    z-index: 10;
 
     @include tablette {
       position: static;
@@ -69,6 +70,7 @@
 }
 
 .navbar {
+  position: relative;
   display: none;
   padding: 10px;
   font-family: "Handlee";
@@ -79,6 +81,9 @@
   @include tablette {
     display: block !important;
     transform-origin: top;
+    height: 50px;
+    // padding-top: 0;
+    padding-bottom: 0;
   }
 }
 
@@ -89,6 +94,8 @@
   @include tablette {
     flex-direction: row;
     justify-content: space-evenly;
+    align-items: center;
+    height: inherit;
   }
 }
 .category {
@@ -96,10 +103,18 @@
   cursor: pointer;
   z-index: 2;
 
+  &:last-of-type {
+    color: red;
+  }
+
   @include tablette {
+    display: flex;
+    align-items: center;
     padding: 0 10px;
+    height: 100%;
     text-align: center;
     margin: 0;
+    box-sizing: border-box;
   }
   &__header {
     display: flex;
@@ -129,41 +144,77 @@
   display: none;
   padding: 10px 15px;
   padding-bottom: 0;
+  color: black;
 
   @include tablette {
     display: none;
+    justify-content: space-evenly;
+    align-items: center;
     position: absolute;
     top: 100%;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgba($color: #ffffff, $alpha: 0.8);
     z-index: 1;
-    padding: 20px 0;
-    padding-bottom: 0;
+    padding: 20px 40px;
+    // padding-bottom: 0;
     text-align: left;
   }
 
   &__subcategory {
     margin-bottom: 5px;
     font-size: 16px;
+
+    @include tablette {
+      align-self: flex-start;
+    }
     @include laptop {
       font-size: 18px;
     }
+
+    & > li {
+      margin: 10px 0;
+      text-transform: capitalize;
+
+      &:last-of-type {
+        color: red;
+        font-weight: bold;
+        margin-top: 15px;
+      }
+    }
     &--link {
+      &:hover {
+        // border-bottom: 1px solid black;
+        text-decoration: underline;
+      }
     }
   }
 }
 
-.subcategories-background {
+.carousels-container {
+  display: flex;
+  justify-content: space-between;
+  width: 450px;
+}
+
+.subcategories-carousel-container {
   display: none;
   @include tablette {
-    display: none;
-    z-index: 1;
-    background-color: rgba($color: #ffffff, $alpha: 0.8);
-    position: absolute;
-    top: 99%;
-    height: 250px;
-    width: 100%;
-    // border-radius: 0 0 10px 10px;
+    display: block;
+    width: 200px;
   }
-  @include laptop {
-    height: 300px;
+}
+
+.each-fade {
+  &__images-container {
+    display: flex;
+    justify-content: space-around;
+    &__image {
+      background: red;
+      height: auto;
+      width: 200px;
+      border-radius: 10px;
+    }
   }
 }

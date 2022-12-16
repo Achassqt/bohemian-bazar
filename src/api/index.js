@@ -13,6 +13,14 @@ export const deleteFetcher = (url) =>
     })
     .then((res) => res.data);
 
+export const putFetcher = (url, data) =>
+  axios
+    .put(url, {
+      withCredentials: true,
+      display: data,
+    })
+    .then((res) => res.data);
+
 export async function login(data) {
   const response = await axios({
     method: "post",

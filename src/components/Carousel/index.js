@@ -32,7 +32,7 @@ function Carousel({ userId, menuOpen }) {
     arrows: true,
     prevArrow: (
       <button
-        style={{ display: menuOpen ? "none" : "block" }}
+        style={{ visibility: menuOpen ? "hidden" : "visible" }}
         className="indicator indicator--left"
       >
         {"<"}
@@ -40,7 +40,7 @@ function Carousel({ userId, menuOpen }) {
     ),
     nextArrow: (
       <button
-        style={{ display: menuOpen ? "none" : "block" }}
+        style={{ visibility: menuOpen ? "hidden" : "visible" }}
         className="indicator indicator--right"
       >
         {">"}
