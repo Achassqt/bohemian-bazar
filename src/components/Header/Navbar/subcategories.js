@@ -182,7 +182,7 @@ function Subcategories({
                     <a className="subcategories__subcategory--link">
                       {subcategory}
                     </a>
-                    <div>
+                    <div className="position-arrows">
                       <button
                         onClick={() => {
                           moveUp(

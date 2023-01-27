@@ -7,7 +7,7 @@ import Categories from "../../components/Categories";
 import present from "../../assets/cadeau.svg";
 import padlock from "../../assets/padlock.svg";
 import delivery from "../../assets/delivery.svg";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 import useSWR from "swr";
 
@@ -44,6 +44,10 @@ function Home() {
         </div>
       </section>
       <Footer />
+
+      <Link className="new-product__link" to="/nouveau-produit">
+        <button className="new-product__btn">+</button>
+      </Link>
 
       <Outlet />
     </>

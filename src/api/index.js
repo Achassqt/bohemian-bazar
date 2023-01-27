@@ -41,47 +41,12 @@ export async function uploadImage(data) {
   return response;
 }
 
-// export async function logout() {
-//   await axios({
-//     method: "get",
-//     url: `${process.env.REACT_APP_API_URL}api/user/logout`,
-//     withCredentials: true,
-//   })
-//     .then(() => {
-//       removeCookie("jwt");
-//     })
-//     .catch((err) => console.log(err));
-// }
-
-// const fetcher = (url) =>
-//   axios
-//     .get(url, {
-//       withCredentials: true,
-//     })
-//     .then((res) => res.data);
-
-// export function useUser() {
-//   const { data, error } = useSWR(
-//     `${process.env.REACT_APP_API_URL}jwtid`,
-//     fetcher
-//   );
-
-//   return {
-//     userId: data,
-//     isLoading: !error && !data,
-//     isError: error,
-//   };
-// }
-
-// export function useLogout() {
-//   const { data, error } = useSWR(
-//     `${process.env.REACT_APP_API_URL}api/user/logout`,
-//     fetcher
-//   );
-
-//   return {
-//     logout: data,
-//     isLoading: !error && !data,
-//     isError: error,
-//   };
-// }
+export async function newProduct(data) {
+  const response = await axios({
+    method: "post",
+    url: `${process.env.REACT_APP_API_URL}api/products`,
+    withCredentials: true,
+    data: data,
+  });
+  return response;
+}

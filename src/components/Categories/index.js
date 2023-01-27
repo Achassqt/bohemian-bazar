@@ -10,14 +10,32 @@ function Categories({ userId }) {
     `${process.env.REACT_APP_API_URL}api/products`
   );
 
-  let array = [];
-  if (!isEmpty(products)) {
-    for (let i = 0; i < products.length; i++) {
-      array.push(products[i].subcategory);
-    }
-  }
-  let productsArray = array.filter(unique);
+  // let array = [];
+  // if (!isEmpty(products)) {
+  //   products.forEach((product) => {
+  //     if (product.display === "false") array.push(product.subcategory);
+  //   });
+  // }
+  // let productsArray = array.filter(unique);
   // console.log(productsArray);
+
+  let productsArray = [];
+  if (!isEmpty(products)) {
+    let subcategories = {};
+    products.forEach((product) => {
+      if (!subcategories[product.subcategory]) {
+        subcategories[product.subcategory] = product.display;
+      }
+    });
+    products.forEach((product) => {
+      if (
+        subcategories[product.subcategory] === "false" &&
+        product.display === "false"
+      ) {
+        productsArray.push(product.subcategory);
+      }
+    });
+  }
 
   //regarder favoris barre de nav chrome pour avoir un article de chaque catégories
 
@@ -44,6 +62,7 @@ function Categories({ userId }) {
     <>
       {userId !== "no token" && (
         <select
+          className="select-display"
           onChange={async (e) => {
             // console.log(e.target.value);
             const productSelected = products.find(
@@ -58,7 +77,7 @@ function Categories({ userId }) {
             e.target.value = "..";
           }}
         >
-          <option>..</option>
+          <option>Sélectionner pour afficher</option>
 
           {productsArray.map((productInArray) => {
             return <option value={productInArray}>{productInArray}</option>;

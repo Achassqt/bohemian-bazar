@@ -58,3 +58,31 @@
     }
   }
 }
+
+.new-product {
+  &__link {
+    position: fixed;
+    bottom: 20px;
+    right: 15px;
+    z-index: 2;
+
+    @include tablette {
+      bottom: 30px;
+      right: 25px;
+    }
+  }
+
+  &__btn {
+    border-radius: 50%;
+    // padding: 20px;
+    width: 60px;
+    height: 60px;
+    font-size: 40px;
+    cursor: pointer;
+
+    @include mobileL {
+      width: 70px;
+      height: 70px;
+    }
+  }
+}

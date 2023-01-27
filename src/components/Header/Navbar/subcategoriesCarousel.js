@@ -31,10 +31,18 @@ function SubcategoriesCarousel({ products, defaultCategoriesArrays, index }) {
 
   // console.log(defaultCategoriesImagesArrays2);
 
+  const proprietes = {
+    duration: 2800,
+    transitionDuration: 1000,
+    infinite: true,
+    // indicators: true,
+    arrows: false,
+  };
+
   return (
     <div className="carousels-container">
       <div className="subcategories-carousel-container">
-        <Fade>
+        <Fade {...proprietes}>
           {!isEmpty(products) &&
             !isEmpty(defaultCategoriesArrays) &&
             defaultCategoriesImagesArrays.map((array, indexOfArray) => {
@@ -58,7 +66,7 @@ function SubcategoriesCarousel({ products, defaultCategoriesArrays, index }) {
         </Fade>
       </div>
       <div className="subcategories-carousel-container">
-        <Fade>
+        <Fade {...proprietes}>
           {!isEmpty(products) &&
             !isEmpty(defaultCategoriesArrays) &&
             defaultCategoriesImagesArrays2.map((array, indexOfArray) => {

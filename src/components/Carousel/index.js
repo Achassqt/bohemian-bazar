@@ -9,6 +9,7 @@ import { isEmpty } from "../utils";
 
 export async function action({ request }) {
   const formData = await request.formData();
+  console.log(formData);
   await uploadImage(formData);
   window.location.reload();
   // mutate(`${process.env.REACT_APP_API_URL}api/images/carousel`);

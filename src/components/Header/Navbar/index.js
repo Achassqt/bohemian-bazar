@@ -24,6 +24,8 @@ function Navbar({
   //   console.log(categoriesArraysEdited);
 
   const [currentArrowRotated, setCurrentArrowRotated] = useState("");
+  const [currentSubcategoriesToggled, setCurrentSubcategoriesToggled] =
+    useState("");
 
   useEffect(() => {
     if (activeFunctionOpen) {
@@ -89,6 +91,26 @@ function Navbar({
     }
   }
 
+  function switchOnSubcategoriesOnClick(index) {
+    const subcategories = document.querySelectorAll(".subcategories");
+    const currentSubcategories = document.getElementById(
+      `subcategories-${index}`
+    );
+
+    if (currentSubcategories.id === currentSubcategoriesToggled) {
+      currentSubcategories.style.display = "none";
+      setCurrentSubcategoriesToggled("");
+    } else {
+      for (let i = 0; i < subcategories.length; i++) {
+        subcategories[i].style.display = "none";
+        subcategories[i].style.transform = "scale(0)";
+      }
+      currentSubcategories.style.display = "flex";
+      currentSubcategories.style.transform = "scale(1)";
+      setCurrentSubcategoriesToggled(currentSubcategories.id);
+    }
+  }
+
   function switchOnSubcategories(index) {
     const subcategories = document.querySelectorAll(".subcategories");
     const currentSubcategories = document.getElementById(
@@ -96,18 +118,25 @@ function Navbar({
     );
 
     for (let i = 0; i < subcategories.length; i++) {
-      subcategories[i].style.display = "none";
+      subcategories[i].style.transform = "scaleY(0)";
     }
     if (currentSubcategories) {
-      currentSubcategories.style.display = "flex";
+      currentSubcategories.style.transform = "scaleY(1)";
+      currentSubcategories.style.transition = "transform 0.5s ease";
     }
   }
 
-  function switchOffSubcategories() {
+  function switchOffSubcategories(index) {
     const subcategories = document.querySelectorAll(".subcategories");
+    const currentSubcategories = document.getElementById(
+      `subcategories-${index}`
+    );
 
     for (let i = 0; i < subcategories.length; i++) {
-      subcategories[i].style.display = "none";
+      subcategories[i].style.transform = "scaleY(0)";
+    }
+    if (currentSubcategories) {
+      currentSubcategories.style.transition = "none";
     }
   }
 
@@ -136,15 +165,31 @@ function Navbar({
           return (
             <li
               className="category"
+              onClick={() => {
+                if (window.innerWidth < 769) {
+                  // const subcategories =
+                  //   document.querySelectorAll(".subcategories");
+
+                  // for (let i = 0; i < subcategories.length; i++) {
+                  //   subcategories[i].style.transform = "scaleY(1)";
+                  // }
+                  switchOnSubcategoriesOnClick(index);
+                  rotateArrows(index);
+                }
+              }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderBottom = "3px solid black";
-                switchOnSubcategories(index);
-                rotateArrows(index);
+                if (window.innerWidth > 767) {
+                  e.currentTarget.style.borderBottom = "3px solid black";
+                  switchOnSubcategories(index);
+                  // rotateArrows(index);
+                }
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderBottom = "none";
-                switchOffSubcategories();
-                rotateArrows(index);
+                if (window.innerWidth > 767) {
+                  e.currentTarget.style.borderBottom = "none";
+                  switchOffSubcategories(index);
+                  // rotateArrows(index);
+                }
               }}
             >
               <div className="category__header">
