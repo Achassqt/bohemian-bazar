@@ -1,23 +1,13 @@
-import useSWR, { mutate } from "swr";
-import close from "../../assets/img-test/close.jpg";
-import { isEmpty, unique } from "../utils";
+import useSWR, { useSWRConfig } from "swr";
+import { isEmpty } from "../utils";
 
-import { putFetcher } from "../../api/index";
 import { useEffect } from "react";
 
 function Categories({ userId }) {
+  const { fetcher, mutate } = useSWRConfig();
   const { data: products } = useSWR(
     `${process.env.REACT_APP_API_URL}api/products`
   );
-
-  // let array = [];
-  // if (!isEmpty(products)) {
-  //   products.forEach((product) => {
-  //     if (product.display === "false") array.push(product.subcategory);
-  //   });
-  // }
-  // let productsArray = array.filter(unique);
-  // console.log(productsArray);
 
   let productsArray = [];
   if (!isEmpty(products)) {
@@ -68,13 +58,14 @@ function Categories({ userId }) {
             const productSelected = products.find(
               (product) => e.target.value === product.subcategory
             );
-            // console.log(productSelected);
-            await putFetcher(
-              `${process.env.REACT_APP_API_URL}api/products/${productSelected._id}`,
-              "true"
-            );
-            mutate(`${process.env.REACT_APP_API_URL}api/products`);
-            e.target.value = "..";
+            await fetcher(`api/products/${productSelected._id}`, "PUT", {
+              display: true,
+            })
+              .then(() => {
+                mutate(`${process.env.REACT_APP_API_URL}api/products`);
+                e.target.value = "..";
+              })
+              .catch((err) => console.log(err));
           }}
         >
           <option>Sélectionner pour afficher</option>
@@ -138,13 +129,15 @@ function Categories({ userId }) {
                     >
                       <button
                         onClick={async () => {
-                          await putFetcher(
-                            `${process.env.REACT_APP_API_URL}api/products/${product._id}`,
-                            "false"
-                          );
-                          mutate(
-                            `${process.env.REACT_APP_API_URL}api/products`
-                          );
+                          await fetcher(`api/products/${product._id}`, "PUT", {
+                            display: false,
+                          })
+                            .then(() => {
+                              mutate(
+                                `${process.env.REACT_APP_API_URL}api/products`
+                              );
+                            })
+                            .catch((err) => console.log(err));
                         }}
                         type="button"
                         className="cards__card__btn-delete"

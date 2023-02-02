@@ -1,71 +1,76 @@
-import { login } from "../../api";
-import { Form, redirect, useActionData } from "react-router-dom";
-import useSWR, { mutate, useSWRConfig } from "swr";
-
-export async function action({ request }) {
-  // console.log(request);
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
-  const response = await login(data);
-  if (response.data.errors) {
-    return response.data;
-  } else {
-    await mutate(`${process.env.REACT_APP_API_URL}jwtid`);
-    return redirect("/");
-  }
-}
+import { useNavigate } from "react-router-dom";
+import useSWR, { useSWRConfig } from "swr";
+import { useState } from "react";
 
 function Admin() {
   const { fetcher, mutate } = useSWRConfig();
-  const { data: userId, error } = useSWR(
-    `${process.env.REACT_APP_API_URL}jwtid`
-  );
+  const { data: userId } = useSWR(`${process.env.REACT_APP_API_URL}jwtid`);
   // console.log(userId);
+  const navigate = useNavigate();
 
-  const data = useActionData();
+  const [pseudo, setPseudo] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
-  // if (error) return <p>erreur</p>;
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await fetcher("api/user/login", "POST", {
+      pseudo,
+      password,
+    })
+      .then((data) => {
+        if (!data.errors) {
+          mutate(`${process.env.REACT_APP_API_URL}jwtid`);
+          navigate("/");
+        } else {
+          setError(data.errors);
+        }
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <div className="admin-wrapper">
       <div className="admin-container">
         {userId === "no token" ? (
-          <Form method="post" action="/admin" className="form">
+          <form onSubmit={handleSubmit} className="form">
             <input
               type="text"
-              name="pseudo"
               className="form__input"
               placeholder="Pseudo"
+              onChange={(e) => {
+                setPseudo(e.target.value);
+              }}
             ></input>
-            {data && data.errors.pseudo && <p>{data.errors.pseudo}</p>}
+            {error && error.pseudo && <p>{error.pseudo}</p>}
             <input
               type="password"
-              name="password"
               className="form__input"
               placeholder="Mot de passe"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
             ></input>
-            {data && data.errors.password && <p>{data.errors.password}</p>}
+            {error && error.password && <p>{error.password}</p>}
             <button type="submit" className="form__button">
               Se connecter
             </button>
-          </Form>
+          </form>
         ) : (
-          <Form method="get" className="logout">
+          <div className="logout">
             <button
               onClick={async () => {
                 await fetcher(
                   `${process.env.REACT_APP_API_URL}api/user/logout`
                 );
-
                 mutate(`${process.env.REACT_APP_API_URL}jwtid`);
-
-                // document.location.href = "/";
               }}
               type="submit"
               className="logout__btn"
             >
               Se déconnecter
             </button>
-          </Form>
+          </div>
         )}
       </div>
     </div>

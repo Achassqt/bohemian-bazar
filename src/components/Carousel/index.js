@@ -1,29 +1,27 @@
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
-import useSWR, { mutate, useSWRConfig } from "swr";
-import { Form } from "react-router-dom";
-import { uploadImage, deleteFetcher } from "../../api";
-import axios from "axios";
+import useSWR, { useSWRConfig } from "swr";
 import { useState } from "react";
 import { isEmpty } from "../utils";
 
-export async function action({ request }) {
-  const formData = await request.formData();
-  console.log(formData);
-  await uploadImage(formData);
-  window.location.reload();
-  // mutate(`${process.env.REACT_APP_API_URL}api/images/carousel`);
-  // return response.data;
-}
-
 function Carousel({ userId, menuOpen }) {
-  // const { mutate } = useSWRConfig();
+  const { fetcher, mutate } = useSWRConfig();
   const [file, setFile] = useState();
-  // console.log(file);
 
   const { data: images } = useSWR(
     `${process.env.REACT_APP_API_URL}api/carousel`
   );
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", file);
+    await fetcher("api/carousel", "POST", formData)
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err) => console.log(err));
+  }
 
   const proprietes = {
     duration: 5000,
@@ -52,41 +50,33 @@ function Carousel({ userId, menuOpen }) {
   return (
     <div className="slide-container">
       {userId !== "no token" && (
-        <Form
-          method="post"
-          action="/"
-          encType="multipart/form-data"
-          className="file-form"
-        >
-          <input
-            type="file"
-            name="file"
-            onChange={(e) => setFile(e.target.value)}
-          />
+        <form onSubmit={handleSubmit} className="file-form">
+          <input type="file" onChange={(e) => setFile(e.target.files[0])} />
           {file && <button type="submit">Ajouter l'image</button>}
-        </Form>
+        </form>
       )}
       {!isEmpty(images) && (
         <Slide {...proprietes}>
-          {images.map((file, index) => {
+          {images.map((image, index) => {
             return (
               <div className="each-slide" key={index}>
                 <div className="image-container">
                   {userId !== "no token" && (
                     <button
                       onClick={async () => {
-                        await deleteFetcher(
-                          `${process.env.REACT_APP_API_URL}api/carousel/${file._id}`
-                        );
-
-                        // mutate(`${process.env.REACT_APP_API_URL}api/images/carousel`);
-                        window.location.reload();
+                        await fetcher(
+                          `api/carousel/${image._id}`,
+                          "DELETE"
+                        ).then((res) => {
+                          console.log(res);
+                          window.location.reload();
+                        });
                       }}
                     >
                       Supprimer
                     </button>
                   )}
-                  <img src={file.imageUrl} alt="qui va la" />
+                  <img src={image.imageUrl} alt="qui va la" />
                 </div>
               </div>
             );

@@ -3,16 +3,18 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Carousel from "../../components/Carousel";
 import Categories from "../../components/Categories";
+import NewProduct from "../../components/ProductManagement/NewProduct";
 
 import present from "../../assets/cadeau.svg";
 import padlock from "../../assets/padlock.svg";
 import delivery from "../../assets/delivery.svg";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useState } from "react";
 import useSWR from "swr";
 
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openProductForm, setOpenProductForm] = useState(false);
 
   const { data: userId } = useSWR(`${process.env.REACT_APP_API_URL}jwtid`);
   // console.log(userId);
@@ -45,10 +47,16 @@ function Home() {
       </section>
       <Footer />
 
-      <Link className="new-product__link" to="/nouveau-produit">
+      <div
+        className="new-product__link"
+        onClick={() => setOpenProductForm(true)}
+      >
         <button className="new-product__btn">+</button>
-      </Link>
+      </div>
 
+      {openProductForm && (
+        <NewProduct setOpenProductForm={setOpenProductForm} />
+      )}
       <Outlet />
     </>
   );

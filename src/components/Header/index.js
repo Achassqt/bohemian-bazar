@@ -4,9 +4,6 @@ import logo from "../../assets/logo_site_web_bohemian-bazar.svg";
 
 import { useState } from "react";
 import Navbar from "./Navbar";
-// import useSWR from "swr";
-
-// import { isEmpty } from "../utils";
 
 function Header({ setMenuOpen }) {
   const [activeFunctionOpen, setActiveFunctionOpen] = useState(false);

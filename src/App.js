@@ -1,46 +1,44 @@
 import "./styles/main.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Admin, { action as login } from "./pages/Admin";
-import { action as uploadCarouselImg } from "./components/Carousel/index";
-import { action as newProduct } from "./pages/NewProduct/index";
+import Admin from "./pages/Admin";
 import { SWRConfig } from "swr";
 import axios from "axios";
 import { mutate } from "swr";
-import NewProduct from "./pages/NewProduct";
+import NewProduct from "./components/ProductManagement/NewProduct";
+import ProductCatalog from "./pages/ProductCatalog";
+import Header from "./components/Header";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-    action: uploadCarouselImg,
-    children: [
-      {
-        path: "admin",
-        element: <Admin />,
-        action: login,
-      },
-      {
-        path: "nouveau-produit",
-        element: <NewProduct />,
-        action: newProduct,
-      },
-    ],
-  },
-]);
+const baseURL = `${process.env.REACT_APP_API_URL}`;
+const instance = axios.create({
+  baseURL,
+});
 
-const fetcher = async (url) =>
-  await axios
-    .get(url, {
+async function fetcher(url, method = "GET", data = {}) {
+  try {
+    const response = await instance({
+      method,
+      url,
       withCredentials: true,
-    })
-    .then((res) => res.data);
+      data,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
 
 function App() {
   return (
-    <SWRConfig value={{ fetcher, mutate }}>
-      <RouterProvider router={router} />
-    </SWRConfig>
+    <BrowserRouter>
+      <SWRConfig value={{ fetcher, mutate }}>
+        <Routes>
+          <Route path="/" element={<Home />}>
+            <Route path="admin" element={<Admin />} />
+          </Route>
+        </Routes>
+      </SWRConfig>
+    </BrowserRouter>
   );
 }
 

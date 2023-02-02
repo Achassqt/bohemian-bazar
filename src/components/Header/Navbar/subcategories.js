@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import useSWR from "swr";
 import { isEmpty, unique } from "../../utils";
 
@@ -46,19 +47,19 @@ function Subcategories({
         !isEmpty(subcategories4)
       ) {
         setCategoriesArrays([
-          { subcategories: subcategories0 },
-          { subcategories: subcategories1 },
-          { subcategories: subcategories2 },
-          { subcategories: subcategories3 },
-          { subcategories: subcategories4 },
+          { name: "prêt à porter", subcategories: subcategories0 },
+          { name: "bijoux & accessoires", subcategories: subcategories1 },
+          { name: "décoration", subcategories: subcategories2 },
+          { name: "carte cadeau", subcategories: subcategories3 },
+          { name: "promotions", subcategories: subcategories4 },
         ]);
         // console.log(subcategoriesArray);
         setDefaultCategoriesArrays([
-          { subcategories: subcategories0 },
-          { subcategories: subcategories1 },
-          { subcategories: subcategories2 },
-          { subcategories: subcategories3 },
-          { subcategories: subcategories4 },
+          { name: "prêt à porter", subcategories: subcategories0 },
+          { name: "bijoux & accessoires", subcategories: subcategories1 },
+          { name: "décoration", subcategories: subcategories2 },
+          { name: "carte cadeau", subcategories: subcategories3 },
+          { name: "promotions", subcategories: subcategories4 },
         ]);
       }
     }
@@ -86,7 +87,6 @@ function Subcategories({
         "subcategoriesObject",
         JSON.stringify(categoriesArrays)
       );
-      console.log("gors zizi");
     }
     const storage = localStorage.getItem("subcategoriesObject");
     // console.log(JSON.parse(storage));
@@ -179,9 +179,12 @@ function Subcategories({
               (subcategory, indexOfSubCategory) => {
                 return (
                   <li>
-                    <a className="subcategories__subcategory--link">
+                    <Link
+                      to={`${categoryArray}/${subcategory}`}
+                      className="subcategories__subcategory--link"
+                    >
                       {subcategory}
-                    </a>
+                    </Link>
                     <div className="position-arrows">
                       <button
                         onClick={() => {
