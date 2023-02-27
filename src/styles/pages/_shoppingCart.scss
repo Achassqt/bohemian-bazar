@@ -1,0 +1,16 @@
+.shopping-cart-container {
+}
+
+.products {
+  display: flex;
+  padding: 40px 20px;
+  &__product {
+    padding: 0 10px;
+    &__link {
+      & > img {
+        width: 350px;
+        height: 495px;
+      }
+    }
+  }
+}

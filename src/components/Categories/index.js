@@ -2,6 +2,7 @@ import useSWR, { useSWRConfig } from "swr";
 import { isEmpty } from "../utils";
 
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Categories({ userId }) {
   const { fetcher, mutate } = useSWRConfig();
@@ -19,8 +20,8 @@ function Categories({ userId }) {
     });
     products.forEach((product) => {
       if (
-        subcategories[product.subcategory] === "false" &&
-        product.display === "false"
+        subcategories[product.subcategory] === false &&
+        product.display === false
       ) {
         productsArray.push(product.subcategory);
       }
@@ -30,23 +31,6 @@ function Categories({ userId }) {
   //regarder favoris barre de nav chrome pour avoir un article de chaque catégories
 
   let dragged;
-
-  function getCards() {
-    const cardsUpdated = document.getElementById("cards-updated");
-    console.log(cardsUpdated);
-    const storage = localStorage.getItem("cards");
-    cardsUpdated.innerHTML = storage;
-    // cardsUpdated.innerHTML = localStorage.getItem("cards");
-  }
-
-  useEffect(() => {
-    if (
-      userId === "no token" &&
-      !isEmpty(document.getElementById("cards-updated"))
-    ) {
-      getCards();
-    }
-  }, [userId]);
 
   return (
     <>
@@ -75,58 +59,75 @@ function Categories({ userId }) {
           })}
         </select>
       )}
-      {userId !== "no token" ? (
-        <section className="cards">
-          {!isEmpty(products) &&
-            products.map((product) => {
-              return (
-                <>
-                  {product.display === "true" && (
-                    <div
-                      className="cards__card"
-                      onDragStart={(e) => {
-                        dragged = e.currentTarget;
-                        e.dataTransfer.setData(
-                          "text/plain",
-                          e.currentTarget.innerHTML
-                        );
-                      }}
-                      onDragOver={(e) => {
-                        e.preventDefault();
-                      }}
-                      onDrop={(e) => {
-                        dragged.innerHTML = e.currentTarget.innerHTML;
-                        e.currentTarget.innerHTML =
-                          e.dataTransfer.getData("text/plain");
+      <section className="cards">
+        {!isEmpty(products) &&
+          products.sort((a, b) => a.ranking - b.ranking) &&
+          products.map((product, index) => {
+            return (
+              <>
+                {product.display && (
+                  <div
+                    className="cards__card"
+                    onDragStart={(e) => {
+                      if (userId === "no token") return;
+                      dragged = e.currentTarget;
+                      e.dataTransfer.setData(
+                        "text/plain",
+                        e.currentTarget.innerHTML
+                      );
+                      e.dataTransfer.setData("index", index);
+                      e.dataTransfer.setData("id", product._id);
+                    }}
+                    onDragOver={(e) => {
+                      if (userId === "no token") return;
+                      e.preventDefault();
+                    }}
+                    onDrop={async (e) => {
+                      if (userId === "no token") return;
+                      dragged.innerHTML = e.currentTarget.innerHTML;
+                      e.currentTarget.innerHTML =
+                        e.dataTransfer.getData("text/plain");
 
-                        const cardsContainer = document.querySelector(".cards");
-                        const cards =
-                          cardsContainer.querySelectorAll(".cards__card");
-                        console.log(cards);
+                      //index de celui qui est déplacé
+                      const draggedIndex = e.dataTransfer.getData("index");
+                      console.log(draggedIndex);
 
-                        for (let i = 0; i < cards.length; i++) {
-                          const btn = cards[i].querySelector(
-                            ".cards__card__btn-delete"
+                      //index de celui qui est échangé
+                      const targetIndex = products.indexOf(product);
+                      console.log(targetIndex);
+
+                      const draggedId = e.dataTransfer.getData("id");
+                      console.log(draggedId);
+
+                      const targetId = product._id;
+                      console.log(targetId);
+
+                      // console.log(e.currentTarget);
+
+                      await fetcher(`api/products/${draggedId}`, "PUT", {
+                        ranking: targetIndex,
+                      })
+                        .then(() => {
+                          mutate(
+                            `${process.env.REACT_APP_API_URL}api/products`
                           );
-                          btn.style.display = "none";
-                        }
+                          // e.target.value = "..";
+                        })
+                        .catch((err) => console.log(err));
 
-                        localStorage.setItem("cards", cardsContainer.outerHTML);
-
-                        for (let i = 0; i < cards.length; i++) {
-                          // cardsArray.push({ card: cards });
-                          // console.log(cardsArray);
-                          const btn = cards[i].querySelector(
-                            ".cards__card__btn-delete"
+                      await fetcher(`api/products/${targetId}`, "PUT", {
+                        ranking: draggedIndex,
+                      })
+                        .then(() => {
+                          mutate(
+                            `${process.env.REACT_APP_API_URL}api/products`
                           );
-                          btn.style.display = "block";
-                        }
-                        const btn = cards.querySelectorAll(
-                          ".cards__card__btn-delete"
-                        );
-                        btn.style.display = "block";
-                      }}
-                    >
+                          // e.target.value = "..";
+                        })
+                        .catch((err) => console.log(err));
+                    }}
+                  >
+                    {userId !== "no token" && (
                       <button
                         onClick={async () => {
                           await fetcher(`api/products/${product._id}`, "PUT", {
@@ -144,33 +145,34 @@ function Categories({ userId }) {
                       >
                         X
                       </button>
-                      <a
-                        // style={{
-                        //   pointerEvents: userId !== "no token" && "none",
-                        // }}
-                        className="cards__card--link"
-                        href={product.subcategory}
-                      >
-                        {product.imageUrl && (
-                          <img
-                            src={product.imageUrl}
-                            alt="provisory close"
-                            className="cards__card__img"
-                          />
-                        )}
-                        <h2 className="cards__card__title-container">
-                          <span>{product.subcategory}</span>
-                        </h2>
-                      </a>
-                    </div>
-                  )}
-                </>
-              );
-            })}
-        </section>
-      ) : (
-        <div id="cards-updated"></div>
-      )}
+                    )}
+                    <Link
+                      // style={{
+                      //   pointerEvents: userId !== "no token" && "none",
+                      // }}
+                      className="cards__card--link"
+                      to={`/${product.category.replace(
+                        / /g,
+                        "-"
+                      )}/${product.subcategory.replace(/ /g, "-")}`}
+                    >
+                      {product.imageUrl && (
+                        <img
+                          src={product.imageUrl}
+                          alt="provisory close"
+                          className="cards__card__img"
+                        />
+                      )}
+                      <h2 className="cards__card__title-container">
+                        <span>{product.subcategory}</span>
+                      </h2>
+                    </Link>
+                  </div>
+                )}
+              </>
+            );
+          })}
+      </section>
     </>
   );
 }

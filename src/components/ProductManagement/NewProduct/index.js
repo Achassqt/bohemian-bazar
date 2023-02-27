@@ -35,6 +35,7 @@ function NewProduct({ setOpenProductForm }) {
   // console.log(newProduct)
   const { fetcher, mutate } = useSWRConfig();
   const [formDataReceived, setFormDataReceived] = useState({});
+  const [confirmation, setConfirmation] = useState(false);
   const formData = new FormData();
 
   const updateState = (data) => {
@@ -50,7 +51,7 @@ function NewProduct({ setOpenProductForm }) {
     }
     async function handleSubmit() {
       formData.append("name", formDataReceived.name);
-      formData.append("category", formDataReceived.category);
+      formData.append("category", formDataReceived.category.toLowerCase());
       formData.append("subcategory", formDataReceived.subcategory);
       formData.append("file", formDataReceived.imageUrl);
       formData.append("price", formDataReceived.price);
@@ -77,7 +78,11 @@ function NewProduct({ setOpenProductForm }) {
       }
 
       await fetcher("api/products", "POST", formData)
-        .then((res) => console.log(res))
+        .then((res) => {
+          mutate(`${process.env.REACT_APP_API_URL}api/products`);
+          setConfirmation(true);
+          console.log(res);
+        })
         .catch((err) => console.log(err));
     }
 
@@ -91,7 +96,11 @@ function NewProduct({ setOpenProductForm }) {
           +
         </div>
         <h2>Publication d'un nouveau produit</h2>
-        <ProductForm onSubmit={updateState} />
+        <ProductForm
+          onSubmit={updateState}
+          confirmation={confirmation}
+          setConfirmation={setConfirmation}
+        />
       </div>
     </div>
   );

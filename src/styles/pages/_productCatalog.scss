@@ -1,0 +1,141 @@
+.product-catalog-wrapper {
+  max-width: 1400px;
+  margin: auto;
+}
+
+.itinerary-of-articles {
+  padding: 10px 10px;
+  display: flex;
+  justify-content: flex-start;
+  max-width: 1400px;
+  margin: auto;
+  box-sizing: border-box;
+  font-family: "Trocchi";
+
+  @include mobileM {
+    // padding: 10px 20px;
+  }
+
+  @include tablette {
+    // padding: 20px;
+  }
+  &__content {
+    display: flex;
+    text-transform: uppercase;
+    font-size: 10px;
+    &__home {
+    }
+
+    &__category {
+      &::before {
+        content: ">";
+        margin: 0 5px;
+      }
+    }
+
+    &__subcategory {
+      &::before {
+        content: ">";
+        margin: 0 5px;
+      }
+    }
+  }
+}
+
+.product-catalog {
+  &__header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: rgba($color: white, $alpha: 0.9);
+    padding: 10px 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include mobileL {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    &__category {
+      font-weight: bold;
+      font-size: 20px;
+      text-transform: capitalize;
+
+      @include tablette {
+        font-size: 30px;
+      }
+    }
+    &__filters {
+      display: flex;
+      align-items: flex-end;
+      margin-top: 12px;
+
+      @include mobileL {
+        position: relative;
+        bottom: 3.5px;
+      }
+
+      &__sizes {
+        font-size: 12px;
+        border: none;
+        border-bottom: 1px solid black;
+        background-color: transparent;
+
+        @include tablette {
+          font-size: 15px;
+        }
+      }
+
+      &__order {
+        font-size: 12px;
+        margin-left: 15px;
+
+        @include mobileL {
+          margin-left: 10px;
+        }
+
+        @include tablette {
+          font-size: 15px;
+          margin-left: 15px;
+        }
+
+        & > span {
+        }
+
+        & > select {
+          border: none;
+          border-bottom: 1px solid black;
+          max-width: 80px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          background-color: transparent;
+
+          @include tablette {
+            max-width: none;
+          }
+        }
+      }
+    }
+  }
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 50px;
+
+    @include mobileL {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include tablette {
+      // justify-content: space-evenly;
+      grid-template-columns: repeat(3, 1fr);
+      padding-top: 10px;
+    }
+  }
+}

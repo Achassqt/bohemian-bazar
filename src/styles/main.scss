@@ -14,7 +14,11 @@
 @import "components/carousel";
 @import "components/categories";
 @import "components/productForm";
+@import "components/productCard";
 
 // pages
 @import "pages/home";
 @import "pages/admin";
+@import "pages/productCatalog";
+@import "pages/product";
+@import "pages/shoppingCart";

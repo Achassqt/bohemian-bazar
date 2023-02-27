@@ -1,6 +1,3 @@
-import HeadBand from "../../components/Header/headBand";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import Carousel from "../../components/Carousel";
 import Categories from "../../components/Categories";
 import NewProduct from "../../components/ProductManagement/NewProduct";
@@ -14,18 +11,14 @@ import useSWR from "swr";
 
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [openProductForm, setOpenProductForm] = useState(false);
+  // const [openProductForm, setOpenProductForm] = useState(false);
 
   const { data: userId } = useSWR(`${process.env.REACT_APP_API_URL}jwtid`);
   // console.log(userId);
   return (
     <>
-      <HeadBand />
-      <div className="test">
-        <Header setMenuOpen={setMenuOpen} />
-        <Carousel userId={userId} menuOpen={menuOpen} />
-        <Categories userId={userId} />
-      </div>
+      <Carousel userId={userId} menuOpen={menuOpen} />
+      <Categories userId={userId} />
       <section className="purchase-infos">
         <div className="info">
           <img src={present} alt="cadeau" className="info__logo" />
@@ -45,9 +38,8 @@ function Home() {
           </span>
         </div>
       </section>
-      <Footer />
 
-      <div
+      {/* <div
         className="new-product__link"
         onClick={() => setOpenProductForm(true)}
       >
@@ -56,7 +48,7 @@ function Home() {
 
       {openProductForm && (
         <NewProduct setOpenProductForm={setOpenProductForm} />
-      )}
+      )} */}
       <Outlet />
     </>
   );

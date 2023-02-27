@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useSWR from "swr";
-import { isEmpty, unique } from "../../utils";
+import { isEmpty, unique, categoriesArray, sizesArray } from "../../utils";
 
 function ProductForm(props) {
   const { data: products } = useSWR(
@@ -24,6 +24,26 @@ function ProductForm(props) {
   const [previewUrl, setPreviewUrl] = useState(null);
 
   const [selectId, setSelectId] = useState(0);
+
+  const form = document.querySelector(".new-product-form");
+  useEffect(() => {
+    if (props.confirmation) {
+      alert("Données envoyées avec succès");
+      form.reset();
+      setFormData({
+        name: "",
+        category: "",
+        subcategory: "",
+        imageUrl: "",
+        price: "",
+        sizes: [],
+        quantities: [],
+      });
+      setPreviewUrl(null);
+      setNewSubcategory(false);
+      props.setConfirmation(false);
+    }
+  });
 
   const addNewSelect = () => {
     setSelectId(selectId + 1);
@@ -59,14 +79,14 @@ function ProductForm(props) {
     await props.onSubmit({ ...formData });
   };
 
-  let allProductsCategories = [];
-  if (!isEmpty(products)) {
-    for (let i = 0; i < products.length; i++) {
-      allProductsCategories.push(products[i].category);
-    }
-  }
-  let allProductsCategoriesUnique = allProductsCategories.filter(unique);
-  //   console.log(allProductsCategoriesUnique);
+  // let allProductsCategories = [];
+  // if (!isEmpty(products)) {
+  //   for (let i = 0; i < products.length; i++) {
+  //     allProductsCategories.push(products[i].category);
+  //   }
+  // }
+  // let allProductsCategoriesUnique = allProductsCategories.filter(unique);
+  // //   console.log(allProductsCategoriesUnique);
 
   let subcategoriesOfACategory;
   if (
@@ -76,8 +96,10 @@ function ProductForm(props) {
     subcategoriesOfACategory = products
       .filter(
         (product) =>
-          product.category === /*categorySelected*/ formData.category ||
-          product.subcategory === /*categorySelected*/ formData.category
+          product.category ===
+            /*categorySelected*/ formData.category.toLowerCase() ||
+          product.subcategory ===
+            /*categorySelected*/ formData.category.toLowerCase()
       )
       .map((product) => product.subcategory)
       .filter(unique);
@@ -99,8 +121,6 @@ function ProductForm(props) {
     };
     reader.readAsDataURL(file);
   };
-
-  const sizesArray = ["S", "M", "L", "XL", "Non"];
 
   return (
     // <div className="new-product-wrapper">
@@ -136,11 +156,13 @@ function ProductForm(props) {
             <option value="" style={{ fontWeight: "bold" }}>
               --Sélection--
             </option>
-            {!isEmpty(products) &&
-              !isEmpty(allProductsCategoriesUnique) &&
-              allProductsCategoriesUnique.map((category) => {
-                return <option name={category}>{category}</option>;
-              })}
+            {categoriesArray.map((category) => {
+              return (
+                category.title !== "CARTE CADEAU" && (
+                  <option name={category.title}>{category.title}</option>
+                )
+              );
+            })}
           </select>
         </div>
         <div

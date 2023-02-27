@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import useSWR from "swr";
-import { isEmpty } from "../../utils";
+import { categoriesArray } from "../../utils";
 import Subcategories from "./subcategories";
 import SubcategoriesCarousel from "./subcategoriesCarousel";
 
@@ -16,16 +17,20 @@ function Navbar({
   );
   //   console.log(products);
 
-  const [defaultCategoriesArrays, setDefaultCategoriesArrays] = useState();
-  //   console.log(defaultCategoriesArrays);
-  const [categoriesArrays, setCategoriesArrays] = useState();
-  //   console.log(categoriesArrays);
-  const [categoriesArraysEdited, setCategoriesArraysEdited] = useState();
-  //   console.log(categoriesArraysEdited);
-
   const [currentArrowRotated, setCurrentArrowRotated] = useState("");
   const [currentSubcategoriesToggled, setCurrentSubcategoriesToggled] =
     useState("");
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const subcategories = document.querySelectorAll(".subcategories");
+
+    for (let i = 0; i < subcategories.length; i++) {
+      subcategories[i].style.transform = "scaleY(0)";
+      subcategories[i].style.transition = "none";
+    }
+  }, [location]);
 
   useEffect(() => {
     if (activeFunctionOpen) {
@@ -140,28 +145,10 @@ function Navbar({
     }
   }
 
-  const categories = [
-    {
-      title: "PRÊT À PORTER",
-    },
-    {
-      title: "BIJOUX & ACCESSOIRES",
-    },
-    {
-      title: "DÉCORATION",
-    },
-    {
-      title: "CARTE CADEAU",
-    },
-    {
-      title: "PROMOTIONS",
-    },
-  ];
-
   return (
     <nav className="navbar">
       <ul className="categories">
-        {categories.map((category, index) => {
+        {categoriesArray.map((category, index) => {
           return (
             <li
               className="category"
@@ -178,7 +165,10 @@ function Navbar({
                 }
               }}
               onMouseEnter={(e) => {
-                if (window.innerWidth > 767) {
+                if (
+                  window.innerWidth > 767 &&
+                  category.title !== "CARTE CADEAU"
+                ) {
                   e.currentTarget.style.borderBottom = "3px solid black";
                   switchOnSubcategories(index);
                   // rotateArrows(index);
@@ -205,19 +195,9 @@ function Navbar({
                   <Subcategories
                     products={products}
                     userId={userId}
-                    index={index}
-                    defaultCategoriesArrays={defaultCategoriesArrays}
-                    setDefaultCategoriesArrays={setDefaultCategoriesArrays}
-                    categoriesArrays={categoriesArrays}
-                    setCategoriesArrays={setCategoriesArrays}
-                    categoriesArraysEdited={categoriesArraysEdited}
-                    setCategoriesArraysEdited={setCategoriesArraysEdited}
+                    category={category.title}
                   />
-                  <SubcategoriesCarousel
-                    products={products}
-                    defaultCategoriesArrays={defaultCategoriesArrays}
-                    index={index}
-                  />
+                  <SubcategoriesCarousel products={products} index={index} />
                 </ul>
               )}
             </li>
