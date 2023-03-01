@@ -74,6 +74,13 @@
     }
   }
 
+  &__description {
+    resize: none;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
   &__infos {
     position: relative;
     width: 100%;

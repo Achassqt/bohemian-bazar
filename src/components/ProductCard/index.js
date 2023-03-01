@@ -116,8 +116,7 @@ function ProductCard({ product, subcategory, index }) {
             {product.name}
           </span>
           <div className="product-card-content__infos__price">
-            <span>{product.price}</span>
-            <span>€</span>
+            <span>{product.price} €</span>
           </div>
         </div>
       </Link>

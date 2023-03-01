@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
 import ProductCard from "../../components/ProductCard";
 import { isEmpty, sizesArray } from "../../components/utils";
+import ItineraryOfArticle from "../../components/utils/ItineraryOfArticles";
 
 function ProductCatalog() {
   const { data: products } = useSWR(
@@ -31,23 +32,7 @@ function ProductCatalog() {
 
   return (
     <div className="product-catalog-wrapper">
-      <div className="itinerary-of-articles">
-        <ul className="itinerary-of-articles__content">
-          <Link to="/">
-            <li className="itinerary-of-articles__content__home">Accueil</li>
-          </Link>
-          <Link to={`/${category.replace(/ /g, "-")}`}>
-            <li className="itinerary-of-articles__content__category">
-              {category}
-            </li>
-          </Link>
-          {subcategory && (
-            <li className="itinerary-of-articles__content__subcategory">
-              {subcategory}
-            </li>
-          )}
-        </ul>
-      </div>
+      <ItineraryOfArticle category={category} subcategory={subcategory} />
       <div className="product-catalog__header">
         {subcategory ? (
           <span className="product-catalog__header__category">

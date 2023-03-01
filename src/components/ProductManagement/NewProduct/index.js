@@ -5,34 +5,7 @@ import useSWR, { useSWRConfig } from "swr";
 import { isEmpty } from "../../utils";
 import ProductForm from "../ProductForm";
 
-// export async function action({ request }) {
-//   const formData = await request.formData();
-//   // console.log(formData);
-//   if (formData.get("size") === "Non") {
-//     formData.delete("size");
-//   } else {
-//     const quantities = formData.getAll("quantity");
-//     const sizes = formData.getAll("size");
-//     const sizesAndQuantities = sizes
-//       .map((size, index) => {
-//         return { size: size, quantity: quantities[index] };
-//       })
-//       .filter((obj) => obj.quantity);
-//     // console.log(sizesAndQuantities);
-//     formData.append("sizes", JSON.stringify(sizesAndQuantities));
-//     formData.delete("size");
-//     formData.delete("quantity");
-//   }
-//   // for (const value of formData.values()) {
-//   //   console.log(value);
-//   // }
-//   await newProduct(formData);
-//   return true;
-// }
-
 function NewProduct({ setOpenProductForm }) {
-  // let newProduct = useActionData();
-  // console.log(newProduct)
   const { fetcher, mutate } = useSWRConfig();
   const [formDataReceived, setFormDataReceived] = useState({});
   const [confirmation, setConfirmation] = useState(false);
@@ -54,6 +27,7 @@ function NewProduct({ setOpenProductForm }) {
       formData.append("category", formDataReceived.category.toLowerCase());
       formData.append("subcategory", formDataReceived.subcategory);
       formData.append("file", formDataReceived.imageUrl);
+      formData.append("description", formDataReceived.description);
       formData.append("price", formDataReceived.price);
       if (!formDataReceived.sizes.includes("Non")) {
         const allSizes = formDataReceived.sizes.filter((element) => element);

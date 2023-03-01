@@ -1,0 +1,32 @@
+.itinerary-of-articles {
+  padding: 10px 10px;
+  display: flex;
+  justify-content: flex-start;
+  max-width: 1400px;
+  margin: auto;
+  box-sizing: border-box;
+  font-family: "Trocchi";
+
+  @include mobileM {
+    // padding: 10px 20px;
+  }
+
+  @include tablette {
+    // padding: 20px;
+  }
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    text-transform: uppercase;
+    font-size: 10px;
+    &__home {
+    }
+
+    &__category {
+      &::before {
+        content: ">";
+        margin: 0 5px;
+      }
+    }
+  }
+}

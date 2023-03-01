@@ -1,8 +1,18 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import { isEmpty } from "../../components/utils";
+import PurchaseInfos from "../../components/PurchaseInfos";
+import { isEmpty, sizesArray } from "../../components/utils";
+import ItineraryOfArticle from "../../components/utils/ItineraryOfArticles";
 
 function Product() {
+  const [sizeSelected, setSizeSelected] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [error, setError] = useState(false);
+
+  const handleClick = (item) => {
+    setSelectedItem(item);
+  };
   const param = useParams();
   console.log(param);
 
@@ -13,7 +23,103 @@ function Product() {
     `${process.env.REACT_APP_API_URL}api/products/${productId}`
   );
   // console.log(product);
-  return !isEmpty(product) && <img src={product.imageUrl} alt="product" />;
+
+  function addProductToCart(
+    id,
+    name,
+    category,
+    subcategory,
+    imageUrl,
+    price,
+    quantity
+  ) {
+    const product = {
+      id,
+      name,
+      category,
+      subcategory,
+      imageUrl,
+      price,
+      size: sizeSelected,
+      quantity,
+    };
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const newCart = [...cart, product];
+    localStorage.setItem("cart", JSON.stringify(newCart));
+  }
+
+  return (
+    !isEmpty(product) && (
+      <>
+        <ItineraryOfArticle
+          category={product.category}
+          subcategory={product.subcategory}
+          name={product.name}
+        />
+        <div className="product-details-container">
+          <div className="product-image-container">
+            <img src={product.imageUrl} alt="product" />
+          </div>
+          <div className="product-infos">
+            <h2 className="product-infos__name">{product.name}</h2>
+            <span className="product-infos__price">{product.price} €</span>
+            <p className="product-infos__description">{product.description}</p>
+            <ul className="product-infos__sizes">
+              {product.sizes
+                .sort(
+                  (a, b) =>
+                    sizesArray.indexOf(a.size) - sizesArray.indexOf(b.size)
+                )
+                .map((size, index) => {
+                  return (
+                    <li
+                      id={`size-${index}`}
+                      onClick={(e) => {
+                        setSizeSelected(e.target.innerHTML);
+                        handleClick(size);
+                      }}
+                      style={{
+                        fontWeight: selectedItem === size ? "bold" : "normal",
+                      }}
+                    >
+                      {size.size}
+                    </li>
+                  );
+                })}
+            </ul>
+            {error && (
+              <span className="error-msg">Séléctionner une taille</span>
+            )}
+            <button
+              onClick={() => {
+                if (!sizeSelected) {
+                  setError(true);
+                } else {
+                  setError(false);
+                }
+                if (sizeSelected) {
+                  addProductToCart(
+                    product._id,
+                    product.name,
+                    product.category,
+                    product.subcategory,
+                    product.imageUrl,
+                    product.price,
+                    product.quantity
+                  );
+                }
+              }}
+              className="add-cart-btn"
+            >
+              Ajouter au panier
+            </button>
+          </div>
+        </div>
+        <PurchaseInfos />
+      </>
+    )
+  );
 }
 
 export default Product;

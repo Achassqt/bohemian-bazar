@@ -14,6 +14,7 @@ function ProductForm(props) {
     category: "",
     subcategory: "",
     imageUrl: "",
+    description: "",
     price: "",
     sizes: [],
     quantities: [],
@@ -35,6 +36,7 @@ function ProductForm(props) {
         category: "",
         subcategory: "",
         imageUrl: "",
+        description: "",
         price: "",
         sizes: [],
         quantities: [],
@@ -223,6 +225,23 @@ function ProductForm(props) {
             />
           </div>
         </div>
+        <textarea
+          name="description"
+          onChange={handleInputChange}
+          placeholder="Description du produit"
+          className="new-product-form__description"
+          style={{
+            display:
+              /*categorySelected*/ formData.category &&
+              /*subcategorySelected*/ formData.subcategory &&
+              /*subcategorySelected*/ formData.subcategory !== "new"
+                ? "flex"
+                : // : newSubcategoryName
+                newSubcategory && formData.subcategory
+                ? "flex"
+                : "none",
+          }}
+        ></textarea>
         <div
           style={{
             display:
