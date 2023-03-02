@@ -158,6 +158,7 @@
     background-color: black;
     color: white;
     height: 32px;
+    cursor: pointer;
 
     @include tablette {
       width: 100%;

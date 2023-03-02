@@ -5,14 +5,24 @@ import accountLogo from "../../assets/account-logo.svg";
 import shoppingCartLogo from "../../assets/shopping-cart-logo.svg";
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 
-function Header({ setMenuOpen }) {
+function Header({
+  setMenuOpen,
+  showModalProductInCart,
+  setShowModalProductInCart,
+}) {
   const [activeFunctionOpen, setActiveFunctionOpen] = useState(false);
   const [activeFunctionClose, setActiveFunctionClose] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location.pathname);
+
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const totalPrice = cart.reduce((acc, product) => acc + product.price, 0);
 
   return (
     <header className="header">
@@ -57,16 +67,110 @@ function Header({ setMenuOpen }) {
           <img src={logo} alt="Bohemian Bazar" />
         </div>
         <div className="customer">
-          <div className="customer__account">
+          {/* <div className="customer__account">
             <img src={accountLogo} alt="Compte" />
-          </div>
-          <div
-            className="customer__shopping-cart"
-            onClick={() => {
-              navigate("/cart");
-            }}
-          >
-            <img src={shoppingCartLogo} alt="Panier" />
+          </div> */}
+          <div className="customer__shopping-cart">
+            {cart && (
+              <div className="customer__shopping-cart__number-products-in-cart">
+                {cart.length}
+              </div>
+            )}
+            <img
+              onClick={() => {
+                navigate("/cart");
+                setShowModalProductInCart(false);
+              }}
+              onMouseEnter={() => {
+                if (location.pathname === "/cart") {
+                  return;
+                }
+                setShowModalProductInCart(true);
+              }}
+              onMouseLeave={() => {
+                if (location.pathname === "/cart") {
+                  return;
+                }
+                setShowModalProductInCart(false);
+              }}
+              src={shoppingCartLogo}
+              alt="Panier"
+            />
+            {showModalProductInCart && (
+              <div
+                onMouseEnter={() => {
+                  setShowModalProductInCart(true);
+                }}
+                onMouseLeave={() => {
+                  setShowModalProductInCart(false);
+                }}
+                className="modal-product-in-cart"
+              >
+                <span className="modal-product-in-cart__add-msg">
+                  Ce produit a bien été ajouté au panier
+                </span>
+                <span className="modal-product-in-cart__title">Mon panier</span>
+                <div className="modal-product-in-cart__products">
+                  {cart.map((product) => {
+                    return (
+                      <div className="modal-product-in-cart__products__product">
+                        <img src={product.imageUrl} alt="produit" />
+                        <div className="modal-product-in-cart__products__product__right">
+                          <div className="modal-product-in-cart__products__product__right__header">
+                            <span className="modal-product-in-cart__products__product__right__header__name">
+                              {product.name}
+                            </span>
+                            <span className="modal-product-in-cart__products__product__right__header__price">
+                              {product.price} €
+                            </span>
+                          </div>
+                          <span>Taille : {product.size}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="modal-product-in-cart__btn-container">
+                  <button
+                    onClick={() => {
+                      navigate("/cart");
+                      setShowModalProductInCart(false);
+                    }}
+                  >
+                    Voir mon panier
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      setShowModalProductInCart(false);
+                    }}
+                  >
+                    Ok
+                  </button>
+                </div>
+                <div className="modal-product-in-cart__summary">
+                  <div className="modal-product-in-cart__summary__prices">
+                    <div className="modal-product-in-cart__summary__prices__price">
+                      <span>Livraison</span>
+                      <span>{totalPrice >= 80 ? 0.0 : 4.99} €</span>
+                    </div>
+                    <div className="modal-product-in-cart__summary__prices__price">
+                      <span>Total</span>
+                      <span>
+                        {totalPrice >= 80 ? totalPrice : totalPrice + 4.99} €
+                      </span>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => {
+                      navigate("/cart");
+                      setShowModalProductInCart(false);
+                    }}
+                  >
+                    Mon panier
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

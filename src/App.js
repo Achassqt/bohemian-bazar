@@ -37,19 +37,39 @@ function App() {
   const { data: userId } = useSWR(`${process.env.REACT_APP_API_URL}jwtid`);
   console.log(userId);
   const [openProductForm, setOpenProductForm] = useState(false);
+  const [showModalProductInCart, setShowModalProductInCart] = useState(false);
 
   return (
     <BrowserRouter>
       <SWRConfig value={{ fetcher, mutate }}>
         <HeadBand />
-        <Header />
+        <Header
+          showModalProductInCart={showModalProductInCart}
+          setShowModalProductInCart={setShowModalProductInCart}
+        />
         <Routes>
           <Route path="/" element={<Home />}>
             <Route path="admin" element={<Admin />} />
           </Route>
           <Route path="/:category" element={<ProductCatalog />} />
-          <Route path="/:category/:subcategory" element={<ProductCatalog />} />
-          <Route path="/:category/:subcategory/:id" element={<Product />} />
+          <Route
+            path="/:category/:subcategory"
+            element={
+              <ProductCatalog
+                showModalProductInCart={showModalProductInCart}
+                setShowModalProductInCart={setShowModalProductInCart}
+              />
+            }
+          />
+          <Route
+            path="/:category/:subcategory/:id"
+            element={
+              <Product
+                showModalProductInCart={showModalProductInCart}
+                setShowModalProductInCart={setShowModalProductInCart}
+              />
+            }
+          />
           <Route path="/cart" element={<ShoppingCart />} />
         </Routes>
         {userId !== "no token" && (

@@ -95,7 +95,8 @@
   @include mobileL {
     flex-direction: row;
     width: 69px;
-    justify-content: space-between;
+    // justify-content: space-between;
+    justify-content: flex-end;
   }
   @include tablette {
     width: 110px;
@@ -126,6 +127,7 @@
     width: 25px;
     height: 25px;
     cursor: pointer;
+    position: relative;
 
     @include mobileL {
       margin: 0;
@@ -136,9 +138,193 @@
       width: 50px;
       height: 50px;
     }
+
+    &__number-products-in-cart {
+      background-color: pink;
+      position: absolute;
+      left: 39%;
+      top: -5px;
+      transform: translate(-50%, -50%);
+      font-size: 10px;
+      font-weight: bold;
+      padding: 3px 7px;
+      border-radius: 50%;
+
+      @include tablette {
+        font-size: 16px;
+        padding: 4px 10px;
+        top: -10px;
+        left: 40%;
+      }
+    }
+
     & > img {
       width: 100%;
       height: 100%;
+    }
+
+    .modal-product-in-cart {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      border-top: 1.5px solid black;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      @include tablette {
+        position: absolute;
+        left: auto;
+        bottom: auto;
+        right: 0;
+        top: 50px;
+        width: 310px;
+        max-height: 500px;
+        z-index: 10;
+        overflow: auto;
+        border: 2px solid black;
+        padding-bottom: 0;
+      }
+
+      &__add-msg {
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 20px;
+        @include tablette {
+          display: none;
+        }
+      }
+
+      &__title {
+        display: none;
+        @include tablette {
+          display: inline-block;
+          text-transform: uppercase;
+          font-weight: bold;
+          margin-bottom: 20px;
+        }
+      }
+
+      &__products {
+        display: none;
+
+        @include tablette {
+          align-self: flex-start;
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+
+          &__product {
+            display: flex;
+            // justify-content: space-between;
+            padding: 10px 0;
+            & > img {
+              width: 80px;
+            }
+
+            &__right {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              margin-left: 20px;
+              width: 100%;
+              &__header {
+                display: flex;
+                justify-content: space-between;
+                &__name {
+                  max-width: 120px;
+                  text-transform: uppercase;
+                  font-size: 14px;
+                }
+
+                &__price {
+                  font-size: 14px;
+                }
+              }
+
+              & > span {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+
+      &__btn-container {
+        width: 100%;
+        max-width: 351px;
+        display: flex;
+        justify-content: space-between;
+
+        @include tablette {
+          display: none;
+        }
+
+        & > button {
+          width: 46%;
+          background-color: transparent;
+          border: 1px solid black;
+          padding: 8px 20px;
+          text-transform: uppercase;
+          font-size: 13px;
+
+          &:hover {
+            border-color: rgba($color: #696969, $alpha: 1);
+          }
+        }
+      }
+
+      &__summary {
+        display: none;
+
+        @include tablette {
+          display: flex;
+          flex-direction: column;
+          position: sticky;
+          bottom: 0;
+          background-color: white;
+          width: 100%;
+          padding: 15px 0 20px;
+          border-top: 2px solid black;
+
+          &__prices {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+
+            & > div {
+              margin-bottom: 5px;
+            }
+
+            & > div:last-of-type {
+              font-weight: bold;
+              margin-bottom: 0;
+            }
+
+            &__price {
+              display: flex;
+              justify-content: space-between;
+            }
+          }
+
+          & > button {
+            padding: 8px 0;
+            text-transform: uppercase;
+            border: 1px solid black;
+            background-color: transparent;
+            cursor: pointer;
+
+            &:hover {
+              border-color: rgba($color: #696969, $alpha: 1);
+            }
+          }
+        }
+      }
     }
   }
 }

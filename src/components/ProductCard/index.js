@@ -2,7 +2,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { isEmpty, sizesArray } from "../utils";
 
-function ProductCard({ product, subcategory, index }) {
+function ProductCard({
+  product,
+  subcategory,
+  index,
+  showModalProductInCart,
+  setShowModalProductInCart,
+}) {
   const [sizesOn, setSizesOn] = useState(false);
 
   function addProductToCart(
@@ -29,6 +35,13 @@ function ProductCard({ product, subcategory, index }) {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const newCart = [...cart, product];
     localStorage.setItem("cart", JSON.stringify(newCart));
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    setShowModalProductInCart(true);
   }
 
   return (

@@ -5,7 +5,7 @@ import PurchaseInfos from "../../components/PurchaseInfos";
 import { isEmpty, sizesArray } from "../../components/utils";
 import ItineraryOfArticle from "../../components/utils/ItineraryOfArticles";
 
-function Product() {
+function Product({ showModalProductInCart, setShowModalProductInCart }) {
   const [sizeSelected, setSizeSelected] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
   const [error, setError] = useState(false);
@@ -47,6 +47,15 @@ function Product() {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const newCart = [...cart, product];
     localStorage.setItem("cart", JSON.stringify(newCart));
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    setSizeSelected(null);
+    setSelectedItem(null);
+    setShowModalProductInCart(true);
   }
 
   return (
