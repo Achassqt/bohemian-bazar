@@ -3,12 +3,10 @@ import Categories from "../../components/Categories";
 import NewProduct from "../../components/ProductManagement/NewProduct";
 
 import { Outlet } from "react-router-dom";
-import { useState } from "react";
 import useSWR from "swr";
 import PurchaseInfos from "../../components/PurchaseInfos";
 
-function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
+function Home({ menuOpen }) {
   // const [openProductForm, setOpenProductForm] = useState(false);
 
   const { data: userId } = useSWR(`${process.env.REACT_APP_API_URL}jwtid`);

@@ -5,7 +5,10 @@ import ProductCard from "../../components/ProductCard";
 import { isEmpty, sizesArray } from "../../components/utils";
 import ItineraryOfArticle from "../../components/utils/ItineraryOfArticles";
 
-function ProductCatalog({ showModalProductInCart, setShowModalProductInCart }) {
+function ProductCatalog({
+  setShowModalProductInCart,
+  setShowMsgAddProductInCart,
+}) {
   const { data: products } = useSWR(
     `${process.env.REACT_APP_API_URL}api/products`
   );
@@ -88,8 +91,8 @@ function ProductCatalog({ showModalProductInCart, setShowModalProductInCart }) {
                   product={product}
                   subcategory={subcategory}
                   index={index}
-                  showModalProductInCart={showModalProductInCart}
                   setShowModalProductInCart={setShowModalProductInCart}
+                  setShowMsgAddProductInCart={setShowMsgAddProductInCart}
                 />
               ) : (
                 !subcategory && category === product.category && (
@@ -97,8 +100,8 @@ function ProductCatalog({ showModalProductInCart, setShowModalProductInCart }) {
                     product={product}
                     subcategory={subcategory}
                     index={index}
-                    showModalProductInCart={showModalProductInCart}
                     setShowModalProductInCart={setShowModalProductInCart}
+                    setShowMsgAddProductInCart={setShowMsgAddProductInCart}
                   />
                 )
               );

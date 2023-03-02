@@ -164,6 +164,117 @@
     }
 
     .modal-product-in-cart {
+      background-color: white;
+      position: absolute;
+      left: auto;
+      bottom: auto;
+      right: 0;
+      top: 50px;
+      width: 310px;
+      max-height: 500px;
+      z-index: 10;
+      overflow: auto;
+      border: 2px solid black;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 0;
+
+      &__title {
+        display: inline-block;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      &__products {
+        align-self: flex-start;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        &__product {
+          display: flex;
+          // justify-content: space-between;
+          padding: 10px 0;
+          & > img {
+            width: 80px;
+          }
+
+          &__right {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-left: 20px;
+            width: 100%;
+            &__header {
+              display: flex;
+              justify-content: space-between;
+              &__name {
+                max-width: 120px;
+                text-transform: uppercase;
+                font-size: 14px;
+              }
+
+              &__price {
+                font-size: 14px;
+              }
+            }
+
+            & > span {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+
+      &__summary {
+        display: flex;
+        flex-direction: column;
+        position: sticky;
+        bottom: 0;
+        background-color: white;
+        width: 100%;
+        padding: 15px 0 20px;
+        border-top: 2px solid black;
+
+        &__prices {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 10px;
+
+          & > div {
+            margin-bottom: 5px;
+          }
+
+          & > div:last-of-type {
+            font-weight: bold;
+            margin-bottom: 0;
+          }
+
+          &__price {
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+
+        & > button {
+          padding: 8px 0;
+          text-transform: uppercase;
+          border: 1px solid black;
+          background-color: transparent;
+          cursor: pointer;
+
+          &:hover {
+            border-color: rgba($color: #696969, $alpha: 1);
+          }
+        }
+      }
+    }
+
+    .add-cart-msg {
       position: fixed;
       bottom: 0;
       left: 0;
@@ -175,84 +286,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-
-      @include tablette {
-        position: absolute;
-        left: auto;
-        bottom: auto;
-        right: 0;
-        top: 50px;
-        width: 310px;
-        max-height: 500px;
-        z-index: 10;
-        overflow: auto;
-        border: 2px solid black;
-        padding-bottom: 0;
-      }
+      z-index: 10;
 
       &__add-msg {
         text-transform: uppercase;
         text-align: center;
         font-weight: bold;
         margin-bottom: 20px;
-        @include tablette {
-          display: none;
-        }
-      }
-
-      &__title {
-        display: none;
-        @include tablette {
-          display: inline-block;
-          text-transform: uppercase;
-          font-weight: bold;
-          margin-bottom: 20px;
-        }
-      }
-
-      &__products {
-        display: none;
-
-        @include tablette {
-          align-self: flex-start;
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-
-          &__product {
-            display: flex;
-            // justify-content: space-between;
-            padding: 10px 0;
-            & > img {
-              width: 80px;
-            }
-
-            &__right {
-              display: flex;
-              flex-direction: column;
-              justify-content: space-between;
-              margin-left: 20px;
-              width: 100%;
-              &__header {
-                display: flex;
-                justify-content: space-between;
-                &__name {
-                  max-width: 120px;
-                  text-transform: uppercase;
-                  font-size: 14px;
-                }
-
-                &__price {
-                  font-size: 14px;
-                }
-              }
-
-              & > span {
-                font-size: 14px;
-              }
-            }
-          }
-        }
       }
 
       &__btn-container {
@@ -261,10 +301,6 @@
         display: flex;
         justify-content: space-between;
 
-        @include tablette {
-          display: none;
-        }
-
         & > button {
           width: 46%;
           background-color: transparent;
@@ -272,56 +308,10 @@
           padding: 8px 20px;
           text-transform: uppercase;
           font-size: 13px;
+          cursor: pointer;
 
           &:hover {
             border-color: rgba($color: #696969, $alpha: 1);
-          }
-        }
-      }
-
-      &__summary {
-        display: none;
-
-        @include tablette {
-          display: flex;
-          flex-direction: column;
-          position: sticky;
-          bottom: 0;
-          background-color: white;
-          width: 100%;
-          padding: 15px 0 20px;
-          border-top: 2px solid black;
-
-          &__prices {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 10px;
-
-            & > div {
-              margin-bottom: 5px;
-            }
-
-            & > div:last-of-type {
-              font-weight: bold;
-              margin-bottom: 0;
-            }
-
-            &__price {
-              display: flex;
-              justify-content: space-between;
-            }
-          }
-
-          & > button {
-            padding: 8px 0;
-            text-transform: uppercase;
-            border: 1px solid black;
-            background-color: transparent;
-            cursor: pointer;
-
-            &:hover {
-              border-color: rgba($color: #696969, $alpha: 1);
-            }
           }
         }
       }

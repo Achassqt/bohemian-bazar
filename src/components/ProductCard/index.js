@@ -6,8 +6,8 @@ function ProductCard({
   product,
   subcategory,
   index,
-  showModalProductInCart,
   setShowModalProductInCart,
+  setShowMsgAddProductInCart,
 }) {
   const [sizesOn, setSizesOn] = useState(false);
 
@@ -36,12 +36,18 @@ function ProductCard({
     const newCart = [...cart, product];
     localStorage.setItem("cart", JSON.stringify(newCart));
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    if (window.innerWidth >= 768) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
 
-    setShowModalProductInCart(true);
+      setShowModalProductInCart(true);
+    }
+
+    if (window.innerWidth < 768) {
+      setShowMsgAddProductInCart(true);
+    }
   }
 
   return (

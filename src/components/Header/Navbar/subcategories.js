@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import useSWR, { useSWRConfig } from "swr";
 import { isEmpty, unique } from "../../utils";
 
-function Subcategories({ products, userId, category }) {
+function Subcategories({ products, userId, category, setActiveFunctionClose }) {
   const { fetcher, mutate } = useSWRConfig();
 
   // if (!isEmpty(products)) {
@@ -145,6 +145,9 @@ function Subcategories({ products, userId, category }) {
                     })
                     .catch((err) => console.log(err));
                 }}
+                onClick={() => {
+                  setActiveFunctionClose(true);
+                }}
               >
                 <Link
                   to={`/${subcategory.category.replace(
@@ -177,7 +180,11 @@ function Subcategories({ products, userId, category }) {
             );
           })}
 
-      <li>
+      <li
+        onClick={() => {
+          setActiveFunctionClose(true);
+        }}
+      >
         <Link
           to={`/${category.replace(/ /g, "-").toLowerCase()}`}
           className="subcategories__subcategory--link"

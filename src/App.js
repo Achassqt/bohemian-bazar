@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import Product from "./pages/Product";
 import ShoppingCart from "./pages/ShoppingCart";
 import { useState } from "react";
+import ScrollToTop from "./components/utils/ScrollToTop";
 
 const baseURL = `${process.env.REACT_APP_API_URL}`;
 const instance = axios.create({
@@ -37,18 +38,24 @@ function App() {
   const { data: userId } = useSWR(`${process.env.REACT_APP_API_URL}jwtid`);
   console.log(userId);
   const [openProductForm, setOpenProductForm] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [showModalProductInCart, setShowModalProductInCart] = useState(false);
+  const [showMsgAddProductInCart, setShowMsgAddProductInCart] = useState(false);
 
   return (
     <BrowserRouter>
       <SWRConfig value={{ fetcher, mutate }}>
+        <ScrollToTop />
         <HeadBand />
         <Header
+          setMenuOpen={setMenuOpen}
           showModalProductInCart={showModalProductInCart}
           setShowModalProductInCart={setShowModalProductInCart}
+          showMsgAddProductInCart={showMsgAddProductInCart}
+          setShowMsgAddProductInCart={setShowMsgAddProductInCart}
         />
         <Routes>
-          <Route path="/" element={<Home />}>
+          <Route path="/" element={<Home menuOpen={menuOpen} />}>
             <Route path="admin" element={<Admin />} />
           </Route>
           <Route path="/:category" element={<ProductCatalog />} />
@@ -56,8 +63,8 @@ function App() {
             path="/:category/:subcategory"
             element={
               <ProductCatalog
-                showModalProductInCart={showModalProductInCart}
                 setShowModalProductInCart={setShowModalProductInCart}
+                setShowMsgAddProductInCart={setShowMsgAddProductInCart}
               />
             }
           />
@@ -65,8 +72,8 @@ function App() {
             path="/:category/:subcategory/:id"
             element={
               <Product
-                showModalProductInCart={showModalProductInCart}
                 setShowModalProductInCart={setShowModalProductInCart}
+                setShowMsgAddProductInCart={setShowMsgAddProductInCart}
               />
             }
           />

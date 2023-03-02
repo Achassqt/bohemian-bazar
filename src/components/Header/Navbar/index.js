@@ -196,6 +196,7 @@ function Navbar({
                     products={products}
                     userId={userId}
                     category={category.title}
+                    setActiveFunctionClose={setActiveFunctionClose}
                   />
                   <SubcategoriesCarousel products={products} index={index} />
                 </ul>

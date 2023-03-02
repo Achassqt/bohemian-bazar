@@ -12,6 +12,8 @@ function Header({
   setMenuOpen,
   showModalProductInCart,
   setShowModalProductInCart,
+  showMsgAddProductInCart,
+  setShowMsgAddProductInCart,
 }) {
   const [activeFunctionOpen, setActiveFunctionOpen] = useState(false);
   const [activeFunctionClose, setActiveFunctionClose] = useState(false);
@@ -71,7 +73,7 @@ function Header({
             <img src={accountLogo} alt="Compte" />
           </div> */}
           <div className="customer__shopping-cart">
-            {cart && (
+            {cart.length > 0 && (
               <div className="customer__shopping-cart__number-products-in-cart">
                 {cart.length}
               </div>
@@ -106,9 +108,6 @@ function Header({
                 }}
                 className="modal-product-in-cart"
               >
-                <span className="modal-product-in-cart__add-msg">
-                  Ce produit a bien été ajouté au panier
-                </span>
                 <span className="modal-product-in-cart__title">Mon panier</span>
                 <div className="modal-product-in-cart__products">
                   {cart.map((product) => {
@@ -130,23 +129,6 @@ function Header({
                     );
                   })}
                 </div>
-                <div className="modal-product-in-cart__btn-container">
-                  <button
-                    onClick={() => {
-                      navigate("/cart");
-                      setShowModalProductInCart(false);
-                    }}
-                  >
-                    Voir mon panier
-                  </button>
-                  <button
-                    onClick={(e) => {
-                      setShowModalProductInCart(false);
-                    }}
-                  >
-                    Ok
-                  </button>
-                </div>
                 <div className="modal-product-in-cart__summary">
                   <div className="modal-product-in-cart__summary__prices">
                     <div className="modal-product-in-cart__summary__prices__price">
@@ -167,6 +149,30 @@ function Header({
                     }}
                   >
                     Mon panier
+                  </button>
+                </div>
+              </div>
+            )}
+            {showMsgAddProductInCart && (
+              <div className="add-cart-msg">
+                <span className="add-cart-msg__add-msg">
+                  Ce produit a bien été ajouté au panier
+                </span>
+                <div className="add-cart-msg__btn-container">
+                  <button
+                    onClick={() => {
+                      navigate("/cart");
+                      setShowMsgAddProductInCart(false);
+                    }}
+                  >
+                    Voir mon panier
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      setShowMsgAddProductInCart(false);
+                    }}
+                  >
+                    Ok
                   </button>
                 </div>
               </div>
