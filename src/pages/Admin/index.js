@@ -31,6 +31,14 @@ function Admin() {
 
   return (
     <div className="admin-wrapper">
+      <div
+        onClick={() => {
+          navigate("/");
+        }}
+        className="retour"
+      >
+        X
+      </div>
       <div className="admin-container">
         {userId === "no token" ? (
           <form onSubmit={handleSubmit} className="form">

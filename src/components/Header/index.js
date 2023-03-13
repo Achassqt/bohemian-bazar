@@ -1,7 +1,7 @@
 import { HiOutlineMenu } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import logo from "../../assets/logo_site_web_bohemian-bazar.svg";
-// import accountLogo from "../../assets/account-logo.svg";
+import accountLogo from "../../assets/account-logo.svg";
 import shoppingCartLogo from "../../assets/shopping-cart-logo.svg";
 
 import { useState } from "react";
@@ -69,9 +69,15 @@ function Header({
           <img src={logo} alt="Bohemian Bazar" />
         </div>
         <div className="customer">
-          {/* <div className="customer__account">
-            <img src={accountLogo} alt="Compte" />
-          </div> */}
+          <div className="customer__account">
+            <img
+              onClick={() => {
+                navigate("/admin");
+              }}
+              src={accountLogo}
+              alt="Compte"
+            />
+          </div>
           <div className="customer__shopping-cart">
             {cart.length > 0 && (
               <div className="customer__shopping-cart__number-products-in-cart">

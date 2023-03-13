@@ -95,8 +95,8 @@
   @include mobileL {
     flex-direction: row;
     width: 69px;
-    // justify-content: space-between;
-    justify-content: flex-end;
+    justify-content: space-between;
+    // justify-content: flex-end;
   }
   @include tablette {
     width: 110px;
