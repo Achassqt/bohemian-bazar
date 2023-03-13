@@ -1,4 +1,5 @@
 import { FaWhatsapp, FaFacebookF, FaInstagram } from "react-icons/fa";
+import NewProduct from "../ProductManagement/NewProduct";
 
 function Footer() {
   return (

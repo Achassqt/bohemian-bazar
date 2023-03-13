@@ -5,7 +5,7 @@ import Admin from "./pages/Admin";
 import useSWR, { SWRConfig } from "swr";
 import axios from "axios";
 import { mutate } from "swr";
-import NewProduct from "./components/ProductManagement/NewProduct";
+import ProductEdition from "./components/ProductManagement/ProductEdition";
 import ProductCatalog from "./pages/ProductCatalog";
 import Header from "./components/Header";
 import HeadBand from "./components/Header/headBand";
@@ -89,7 +89,7 @@ function App() {
             </div>
 
             {openProductForm && (
-              <NewProduct setOpenProductForm={setOpenProductForm} />
+              <ProductEdition setOpenProductForm={setOpenProductForm} />
             )}
           </>
         )}

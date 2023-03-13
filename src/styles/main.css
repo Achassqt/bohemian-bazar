@@ -1363,6 +1363,8 @@ body {
 }
 .new-product-form__infos .preview-container {
   flex: 1;
+  display: flex;
+  justify-content: center;
 }
 .new-product-form__infos .preview-container__content {
   width: 200px;
@@ -1799,6 +1801,7 @@ body {
 }
 
 .product-infos {
+  position: relative;
   padding: 20px 10px;
   padding-bottom: 50px;
   max-width: 600px;
@@ -1886,6 +1889,18 @@ body {
 }
 .product-infos .add-cart-btn:hover {
   border-color: dimgray;
+}
+
+.edit-product-btn {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .edit-product-btn {
+    right: 20px;
+  }
 }
 
 .shopping-cart-container {

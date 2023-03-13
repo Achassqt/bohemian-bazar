@@ -26,6 +26,7 @@
 }
 
 .product-infos {
+  position: relative;
   padding: 20px 10px;
   padding-bottom: 50px;
   max-width: 600px;
@@ -113,5 +114,16 @@
     &:hover {
       border-color: rgba($color: #696969, $alpha: 1);
     }
+  }
+}
+
+.edit-product-btn {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  cursor: pointer;
+
+  @include tablette {
+    right: 20px;
   }
 }
