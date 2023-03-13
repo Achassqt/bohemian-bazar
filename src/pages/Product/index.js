@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useSWR, { useSWRConfig } from "swr";
 import ProductEdition from "../../components/ProductManagement/ProductEdition";
-import ProductForm from "../../components/ProductManagement/ProductForm";
 import PurchaseInfos from "../../components/PurchaseInfos";
 import { isEmpty, sizesArray } from "../../components/utils";
 import ItineraryOfArticle from "../../components/utils/ItineraryOfArticles";
@@ -101,6 +100,7 @@ function Product({ setShowModalProductInCart, setShowMsgAddProductInCart }) {
                 .map((size, index) => {
                   return (
                     <li
+                      key={`${size.size}-${index}`}
                       id={`size-${index}`}
                       onClick={(e) => {
                         setSizeSelected(e.target.innerHTML);

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, redirect, useActionData } from "react-router-dom";
-import useSWR, { useSWRConfig } from "swr";
+import { useSWRConfig } from "swr";
 import { isEmpty } from "../../utils";
 import ProductForm from "../ProductForm";
 

@@ -1,64 +1,9 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import useSWR, { useSWRConfig } from "swr";
-import { isEmpty, unique } from "../../utils";
+import { useSWRConfig } from "swr";
+import { isEmpty } from "../../utils";
 
 function Subcategories({ products, userId, category, setActiveFunctionClose }) {
   const { fetcher, mutate } = useSWRConfig();
-
-  // if (!isEmpty(products)) {
-  //   subcategoriesArray = products
-  //     .filter((product) => product.category === category.toLowerCase())
-  //     .map((product, index) => {
-  //       const ranking =
-  //         product.rankingInList ??
-  //         fetcher(`api/products/${product._id}`, "PUT", {
-  //           rankingInList: index,
-  //         })
-  //           .then((product) => {
-  //             return product.rankingInList;
-  //           })
-  //           .catch((err) => console.log(err));
-  //       return {
-  //         name: product.subcategory,
-  //         category: category.toLowerCase(),
-  //         ranking: ranking ?? index,
-  //         id: product._id,
-  //       };
-  //     });
-  //   subcategoriesArray.filter(unique);
-  //   console.log(subcategoriesArray);
-  // }
-
-  //   let subcategoriesArray = [];
-
-  //   if (!isEmpty(products)) {
-  //     const subcategoriesObj = products.reduce((acc, product, index) => {
-  //     if (product.category === category.toLowerCase()) {
-  //       const subcategory = product.subcategory;
-  //       if (!acc[subcategory]) {
-  //         const ranking =
-  //           product.rankingInList ??
-  //           fetcher(`api/products/${product._id}`, "PUT", {
-  //             rankingInList: index,
-  //           })
-  //             .then((product) => {
-  //               return product.rankingInList;
-  //             })
-  //             .catch((err) => console.log(err));
-  //         acc[subcategory] = {
-  //           name: subcategory,
-  //           category: category.toLowerCase(),
-  //           ranking: ranking ?? index,
-  //           id: product._id,
-  //         };
-  //       }
-  //     }
-  //     return acc;
-  //   }, {});
-  //   subcategoriesArray = Object.values(subcategoriesObj);
-  //   console.log(subcategoriesArray);
-  // }
 
   let subcategoriesArray = [];
 
@@ -91,6 +36,7 @@ function Subcategories({ products, userId, category, setActiveFunctionClose }) {
           .map((subcategory, index) => {
             return (
               <li
+                key={`${subcategory.name}-${index}`}
                 onDragStart={(e) => {
                   if (userId === "no token") return;
                   dragged = e.currentTarget;
@@ -158,24 +104,6 @@ function Subcategories({ products, userId, category, setActiveFunctionClose }) {
                 >
                   {subcategory.name}
                 </Link>
-                {/* {userId !== "no token" && (
-                  <div className="position-arrows">
-                    <button
-                      onClick={() => {
-                        moveUp(subcategory.id, subcategory.ranking);
-                      }}
-                    >
-                      {"<"}
-                    </button>
-                    <button
-                      onClick={() => {
-                        moveDown(subcategory.id, subcategory.ranking);
-                      }}
-                    >
-                      {">"}
-                    </button>
-                  </div>
-                )} */}
               </li>
             );
           })}

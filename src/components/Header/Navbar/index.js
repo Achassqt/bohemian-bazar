@@ -151,6 +151,7 @@ function Navbar({
         {categoriesArray.map((category, index) => {
           return (
             <li
+              key={category.title}
               className="category"
               onClick={() => {
                 if (window.innerWidth < 769) {

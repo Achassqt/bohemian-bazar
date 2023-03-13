@@ -1,8 +1,8 @@
 import useSWR, { useSWRConfig } from "swr";
 import { isEmpty } from "../utils";
 
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Fragment } from "react";
 
 function Categories({ userId }) {
   const { fetcher, mutate } = useSWRConfig();
@@ -54,8 +54,12 @@ function Categories({ userId }) {
         >
           <option>Sélectionner pour afficher</option>
 
-          {productsArray.map((productInArray) => {
-            return <option value={productInArray}>{productInArray}</option>;
+          {productsArray.map((productInArray, index) => {
+            return (
+              <option value={productInArray} key={`${productInArray}-${index}`}>
+                {productInArray}
+              </option>
+            );
           })}
         </select>
       )}
@@ -64,7 +68,7 @@ function Categories({ userId }) {
           products.sort((a, b) => a.ranking - b.ranking) &&
           products.map((product, index) => {
             return (
-              <>
+              <Fragment key={`${product.subcategory}-${index}`}>
                 {product.display && (
                   <div
                     className="cards__card"
@@ -169,7 +173,7 @@ function Categories({ userId }) {
                     </Link>
                   </div>
                 )}
-              </>
+              </Fragment>
             );
           })}
       </section>

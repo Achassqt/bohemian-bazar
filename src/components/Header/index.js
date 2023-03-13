@@ -1,7 +1,7 @@
 import { HiOutlineMenu } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import logo from "../../assets/logo_site_web_bohemian-bazar.svg";
-import accountLogo from "../../assets/account-logo.svg";
+// import accountLogo from "../../assets/account-logo.svg";
 import shoppingCartLogo from "../../assets/shopping-cart-logo.svg";
 
 import { useState } from "react";
@@ -110,9 +110,12 @@ function Header({
               >
                 <span className="modal-product-in-cart__title">Mon panier</span>
                 <div className="modal-product-in-cart__products">
-                  {cart.map((product) => {
+                  {cart.map((product, index) => {
                     return (
-                      <div className="modal-product-in-cart__products__product">
+                      <div
+                        key={`${product.name}-${index}`}
+                        className="modal-product-in-cart__products__product"
+                      >
                         <img src={product.imageUrl} alt="produit" />
                         <div className="modal-product-in-cart__products__product__right">
                           <div className="modal-product-in-cart__products__product__right__header">

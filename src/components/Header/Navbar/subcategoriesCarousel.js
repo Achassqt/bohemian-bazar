@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Fade } from "react-slideshow-image";
 import { isEmpty } from "../../utils";
 
@@ -50,12 +49,16 @@ function SubcategoriesCarousel({ products, defaultCategoriesArrays, index }) {
                 index === indexOfArray &&
                 array.map((subcategoryImage) => {
                   return (
-                    <div className="each-fade">
+                    <div
+                      className="each-fade"
+                      key={`fade-${indexOfArray}-${index}`}
+                    >
                       <div className="each-fade__images-container">
                         <img
                           src={subcategoryImage}
                           alt="zizi"
                           className="each-fade__images-container__image"
+                          key={`image-${indexOfArray}-${index}`}
                         />
                       </div>
                     </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import ProductCard from "../../components/ProductCard";
 import { isEmpty, sizesArray } from "../../components/utils";
@@ -53,7 +53,11 @@ function ProductCatalog({
             {sizesArray
               .filter((valeur) => valeur !== "Non")
               .map((size) => {
-                return <option value={size}>{size}</option>;
+                return (
+                  <option key={size} value={size}>
+                    {size}
+                  </option>
+                );
               })}
           </select>
           <div className="product-catalog__header__filters__order">
@@ -88,6 +92,7 @@ function ProductCatalog({
             .map((product, index) => {
               return subcategory && subcategory === product.subcategory ? (
                 <ProductCard
+                  key={`product-card-${index}`}
                   product={product}
                   subcategory={subcategory}
                   index={index}
@@ -97,6 +102,7 @@ function ProductCatalog({
               ) : (
                 !subcategory && category === product.category && (
                   <ProductCard
+                    key={`product-card-${index}`}
                     product={product}
                     subcategory={subcategory}
                     index={index}

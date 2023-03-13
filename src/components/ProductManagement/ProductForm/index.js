@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import useSWR from "swr";
 import { isEmpty, unique, categoriesArray, sizesArray } from "../../utils";
 
@@ -202,6 +201,7 @@ function ProductForm({
               return (
                 category.title !== "CARTE CADEAU" && (
                   <option
+                    key={category.title}
                     selected={
                       product &&
                       editFormData.category === category.title.toLowerCase() &&
@@ -247,9 +247,10 @@ function ProductForm({
             </option>
             {!isEmpty(products) &&
               !isEmpty(subcategoriesOfACategory) &&
-              subcategoriesOfACategory.map((subcategoryOfACategory) => {
+              subcategoriesOfACategory.map((subcategoryOfACategory, index) => {
                 return (
                   <option
+                    key={`subcategory-${index}`}
                     selected={
                       product &&
                       editFormData.subcategory === subcategoryOfACategory &&
@@ -338,6 +339,7 @@ function ProductForm({
                 <div className="new-product-form__infos__left__sizes">
                   {[...Array(selectId + 1)].map((_, index) => (
                     <div
+                      key={`array-${index}`}
                       className="new-product-form__infos__left__sizes__size-infos"
                       id={`div-${index}`}
                     >
@@ -366,6 +368,7 @@ function ProductForm({
                           {sizesArray.map((size) => {
                             return (
                               <option
+                                key={`size-${index}`}
                                 selected={
                                   (product &&
                                     index < editFormData.sizesArray.length &&

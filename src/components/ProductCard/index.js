@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { isEmpty, sizesArray } from "../utils";
 
@@ -104,7 +104,7 @@ function ProductCard({
                   )
                   .map((size, index) => {
                     return (
-                      <>
+                      <Fragment key={`${size.size}-${index}`}>
                         {index !== 0 && <span className="sizes__-">-</span>}
                         <span
                           className="sizes__size"
@@ -123,7 +123,7 @@ function ProductCard({
                         >
                           {size.size}
                         </span>
-                      </>
+                      </Fragment>
                     );
                   })}
               </div>

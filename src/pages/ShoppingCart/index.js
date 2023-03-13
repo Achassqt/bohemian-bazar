@@ -30,9 +30,12 @@ function ShoppingCart() {
     <>
       <section className="shopping-cart-container">
         <div className="products">
-          {cart.map((product) => {
+          {cart.map((product, index) => {
             return (
-              <div className="products__product">
+              <div
+                key={`${product.name}-${index}`}
+                className="products__product"
+              >
                 <div className="link-img-container">
                   <Link
                     to={`/${product.category.replace(
