@@ -53,7 +53,7 @@ function ProductForm({
     if (!product && confirmation) {
       alert("Le produit à bien été enregistré");
       form.reset();
-      setFormData({});
+      setFormData({ sizes: [], quantities: [] });
       setPreviewUrl(null);
       setNewSubcategory(false);
       setConfirmation(false);
@@ -271,7 +271,7 @@ function ProductForm({
             className="new-product-form__subcategory__new"
           >
             <label htmlFor="subcategory-input">
-              Nom de la nouvelle sous-catégorie
+              Nom de la nouvelle sous-catégorie :
             </label>
             <input
               required={newSubcategory && true}
@@ -393,6 +393,7 @@ function ProductForm({
                           required
                           type="number"
                           name="quantities"
+                          min="1"
                           defaultValue={
                             (product &&
                               index < editFormData.sizesArray.length &&
@@ -456,6 +457,7 @@ function ProductForm({
                   required
                   type="number"
                   name="price"
+                  min="1"
                   defaultValue={product && editFormData.price}
                   onChange={handleInputChange}
                 />

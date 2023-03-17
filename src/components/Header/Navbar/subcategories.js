@@ -114,7 +114,11 @@ function Subcategories({ products, userId, category, setActiveFunctionClose }) {
         }}
       >
         <Link
-          to={`/${category.replace(/ /g, "-").toLowerCase()}`}
+          to={`/${category
+            .replace(/ /g, "-")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase()}`}
           className="subcategories__subcategory--link"
         >
           Voir tout

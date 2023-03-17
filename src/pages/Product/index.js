@@ -142,11 +142,8 @@ function Product({ setShowModalProductInCart, setShowMsgAddProductInCart }) {
               Ajouter au panier
             </button>
             {userId !== "no token" && (
-              <>
-                <button
-                  onClick={() => setEditProduct(true)}
-                  className="edit-product-btn"
-                >
+              <div className="edit-btns">
+                <button onClick={() => setEditProduct(true)}>
                   Modifier le produit
                 </button>
                 {editProduct && (
@@ -183,7 +180,7 @@ function Product({ setShowModalProductInCart, setShowMsgAddProductInCart }) {
                 >
                   Supprimer le produit
                 </button>
-              </>
+              </div>
             )}
           </div>
         </div>

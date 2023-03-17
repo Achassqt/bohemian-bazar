@@ -1904,15 +1904,17 @@ body {
   border-color: dimgray;
 }
 
-.edit-product-btn {
+.edit-btns {
   position: absolute;
-  top: 20px;
-  right: 10px;
-  cursor: pointer;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 @media (min-width: 768px) {
-  .edit-product-btn {
-    right: 20px;
+  .edit-btns {
+    bottom: -20px;
   }
 }
 

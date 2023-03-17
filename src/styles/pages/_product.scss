@@ -117,13 +117,15 @@
   }
 }
 
-.edit-product-btn {
+.edit-btns {
   position: absolute;
-  top: 20px;
-  right: 10px;
-  cursor: pointer;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 
   @include tablette {
-    right: 20px;
+    bottom: -20px;
   }
 }

@@ -90,7 +90,9 @@ function ProductCatalog({
               } else return true;
             })
             .map((product, index) => {
-              return subcategory && subcategory === product.subcategory ? (
+              return subcategory &&
+                category === product.category &&
+                subcategory === product.subcategory ? (
                 <ProductCard
                   key={`product-card-${index}`}
                   product={product}
