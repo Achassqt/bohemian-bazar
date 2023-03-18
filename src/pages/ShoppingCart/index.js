@@ -39,9 +39,9 @@ function ShoppingCart() {
                 <div className="link-img-container">
                   <Link
                     to={`/${encodeURIComponent(
-                      product.category.replace(/ /g, "-")
+                      product.category.replace(/ /g, "-").toLowerCase()
                     )}/${encodeURIComponent(
-                      product.subcategory.replace(/ /g, "-")
+                      product.subcategory.replace(/ /g, "-").toLowerCase()
                     )}/${encodeURIComponent(
                       product.name.replace(/ /g, "-").toLowerCase()
                     )}_${product.id}`}

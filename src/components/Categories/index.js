@@ -156,9 +156,9 @@ function Categories({ userId }) {
                       // }}
                       className="cards__card--link"
                       to={`/${encodeURIComponent(
-                        product.category.replace(/ /g, "-")
+                        product.category.replace(/ /g, "-").toLowerCase()
                       )}/${encodeURIComponent(
-                        product.subcategory.replace(/ /g, "-")
+                        product.subcategory.replace(/ /g, "-").toLowerCase()
                       )}`}
                     >
                       {product.imageUrl && (

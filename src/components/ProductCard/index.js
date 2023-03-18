@@ -59,7 +59,7 @@ function ProductCard({
         to={
           !subcategory
             ? `${encodeURIComponent(
-                product.subcategory.replace(/ /g, "-")
+                product.subcategory.replace(/ /g, "-").toLowerCase()
               )}/${encodeURIComponent(
                 product.name.replace(/ /g, "-").toLowerCase()
               )}_${product._id}`

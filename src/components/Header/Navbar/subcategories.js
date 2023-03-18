@@ -97,9 +97,9 @@ function Subcategories({ products, userId, category, setActiveFunctionClose }) {
               >
                 <Link
                   to={`/${encodeURIComponent(
-                    subcategory.category.replace(/ /g, "-")
+                    subcategory.category.replace(/ /g, "-").toLowerCase()
                   )}/${encodeURIComponent(
-                    subcategory.name.replace(/ /g, "-")
+                    subcategory.name.replace(/ /g, "-").toLowerCase()
                   )}`}
                   className="subcategories__subcategory--link"
                 >
