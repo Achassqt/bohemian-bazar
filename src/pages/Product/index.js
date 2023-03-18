@@ -5,11 +5,12 @@ import ProductEdition from "../../components/ProductManagement/ProductEdition";
 import PurchaseInfos from "../../components/PurchaseInfos";
 import { isEmpty, sizesArray } from "../../components/utils";
 import ItineraryOfArticle from "../../components/utils/ItineraryOfArticles";
+import NotFound from "../NotFound";
 
 function Product({ setShowModalProductInCart, setShowMsgAddProductInCart }) {
   const [sizeSelected, setSizeSelected] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [error, setError] = useState(false);
+  const [sizeError, setSizeError] = useState(false);
 
   const [editProduct, setEditProduct] = useState(false);
 
@@ -29,10 +30,10 @@ function Product({ setShowModalProductInCart, setShowMsgAddProductInCart }) {
   const productId = param.id.split("_")[1];
   console.log(productId);
 
-  const { data: product } = useSWR(
+  const { data: product, error } = useSWR(
     `${process.env.REACT_APP_API_URL}api/products/${productId}`
   );
-  // console.log(product);
+  // console.log(error);
 
   function addProductToCart(
     id,
@@ -75,6 +76,10 @@ function Product({ setShowModalProductInCart, setShowMsgAddProductInCart }) {
     setSelectedItem(null);
   }
 
+  if (error) {
+    return <NotFound />;
+  }
+
   return (
     !isEmpty(product) && (
       <>
@@ -115,15 +120,15 @@ function Product({ setShowModalProductInCart, setShowMsgAddProductInCart }) {
                   );
                 })}
             </ul>
-            {error && (
+            {sizeError && (
               <span className="error-msg">Séléctionner une taille</span>
             )}
             <button
               onClick={() => {
                 if (!sizeSelected) {
-                  setError(true);
+                  setSizeError(true);
                 } else {
-                  setError(false);
+                  setSizeError(false);
                 }
                 if (sizeSelected) {
                   addProductToCart(

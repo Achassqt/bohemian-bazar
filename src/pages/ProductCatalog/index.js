@@ -4,6 +4,7 @@ import useSWR from "swr";
 import ProductCard from "../../components/ProductCard";
 import { isEmpty, sizesArray } from "../../components/utils";
 import ItineraryOfArticle from "../../components/utils/ItineraryOfArticles";
+import NotFound from "../NotFound";
 
 function ProductCatalog({
   setShowModalProductInCart,
@@ -34,6 +35,18 @@ function ProductCatalog({
     : null;
   console.log(category);
   console.log(subcategory);
+
+  const productExists =
+    products &&
+    products.some((product) => {
+      return (
+        product.category === category || product.subcategory === subcategory
+      );
+    });
+
+  if (!productExists) {
+    return <NotFound />;
+  }
 
   return (
     <div className="product-catalog-wrapper">

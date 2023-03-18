@@ -14,6 +14,7 @@ import Product from "./pages/Product";
 import ShoppingCart from "./pages/ShoppingCart";
 import { useState } from "react";
 import ScrollToTop from "./components/utils/ScrollToTop";
+import NotFound from "./pages/NotFound";
 
 const baseURL = `${process.env.REACT_APP_API_URL}`;
 const instance = axios.create({
@@ -78,6 +79,8 @@ function App() {
             }
           />
           <Route path="/cart" element={<ShoppingCart />} />
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
         {userId !== "no token" && (
           <>
