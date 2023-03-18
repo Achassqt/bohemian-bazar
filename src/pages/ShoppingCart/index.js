@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PurchaseInfos from "../../components/PurchaseInfos";
 
 import { FaWhatsapp, FaFacebookF, FaInstagram } from "react-icons/fa";
+import { isEmpty } from "../../components/utils";
 
 function ShoppingCart() {
   const [cart, setCart] = useState(
@@ -12,8 +13,10 @@ function ShoppingCart() {
 
   function removeProductFromCart(productId, size) {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const productToRemoveIndex = cart.findIndex(
-      (product) => product.id === productId && product.size === size
+    const productToRemoveIndex = cart.findIndex((product) =>
+      !isEmpty(product.size)
+        ? product.id === productId && product.size === size
+        : product.id === productId
     );
     if (productToRemoveIndex !== -1) {
       const updatedCart = [
@@ -58,9 +61,11 @@ function ShoppingCart() {
                     <span className="products__product__details__infos__price">
                       {product.price} €
                     </span>
-                    <span className="products__product__details__infos__size">
-                      Taille : {product.size}
-                    </span>
+                    {!isEmpty(product.size) && (
+                      <span className="products__product__details__infos__size">
+                        Taille : {product.size}
+                      </span>
+                    )}
                   </div>
                   <div className="products__product__details__actions">
                     <span
@@ -115,7 +120,8 @@ function ShoppingCart() {
               Livraison : {totalPrice >= 80 ? 0.0 : 4.99} €
             </span>
             <span className="order-price-container__total">
-              Total : {totalPrice >= 80 ? totalPrice : totalPrice + 4.99} €
+              Total :{" "}
+              {totalPrice >= 80 ? totalPrice : (totalPrice + 4.99).toFixed(2)}€
             </span>
           </div>
         </div>

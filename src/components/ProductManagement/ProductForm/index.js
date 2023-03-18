@@ -458,6 +458,7 @@ function ProductForm({
                   type="number"
                   name="price"
                   min="1"
+                  step="0.01"
                   defaultValue={product && editFormData.price}
                   onChange={handleInputChange}
                 />

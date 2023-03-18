@@ -4,9 +4,10 @@ import logo from "../../assets/logo_site_web_bohemian-bazar.svg";
 import accountLogo from "../../assets/account-logo.svg";
 import shoppingCartLogo from "../../assets/shopping-cart-logo.svg";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
+import { isEmpty } from "../utils";
 
 function Header({
   setMenuOpen,
@@ -21,6 +22,11 @@ function Header({
   const navigate = useNavigate();
   const location = useLocation();
   console.log(location.pathname);
+
+  useEffect(() => {
+    setShowMsgAddProductInCart(false); // réinitialise la valeur de myState à false à chaque changement de page
+    setShowModalProductInCart(false); // réinitialise la valeur de myState à false à chaque changement de page
+  }, [location]);
 
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -132,7 +138,9 @@ function Header({
                               {product.price} €
                             </span>
                           </div>
-                          <span>Taille : {product.size}</span>
+                          {!isEmpty(product.size) && (
+                            <span>Taille : {product.size}</span>
+                          )}
                         </div>
                       </div>
                     );
@@ -147,7 +155,10 @@ function Header({
                     <div className="modal-product-in-cart__summary__prices__price">
                       <span>Total</span>
                       <span>
-                        {totalPrice >= 80 ? totalPrice : totalPrice + 4.99} €
+                        {totalPrice >= 80
+                          ? totalPrice
+                          : (totalPrice + 4.99).toFixed(2)}{" "}
+                        €
                       </span>
                     </div>
                   </div>
