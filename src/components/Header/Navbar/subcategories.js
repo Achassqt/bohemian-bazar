@@ -96,10 +96,11 @@ function Subcategories({ products, userId, category, setActiveFunctionClose }) {
                 }}
               >
                 <Link
-                  to={`/${subcategory.category.replace(
-                    / /g,
-                    "-"
-                  )}/${subcategory.name.replace(/ /g, "-")}`}
+                  to={`/${encodeURIComponent(
+                    subcategory.category.replace(/ /g, "-")
+                  )}/${encodeURIComponent(
+                    subcategory.name.replace(/ /g, "-")
+                  )}`}
                   className="subcategories__subcategory--link"
                 >
                   {subcategory.name}
@@ -114,11 +115,13 @@ function Subcategories({ products, userId, category, setActiveFunctionClose }) {
         }}
       >
         <Link
-          to={`/${category
-            .replace(/ /g, "-")
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .toLowerCase()}`}
+          to={`/${encodeURIComponent(
+            category
+              .replace(/ /g, "-")
+              // .normalize("NFD")
+              // .replace(/[\u0300-\u036f]/g, "")
+              .toLowerCase()
+          )}`}
           className="subcategories__subcategory--link"
         >
           Voir tout

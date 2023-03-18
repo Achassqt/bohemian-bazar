@@ -58,10 +58,14 @@ function ProductCard({
       <Link
         to={
           !subcategory
-            ? `${product.subcategory.replace(/ /g, "-")}/${product.name
-                .replace(/ /g, "-")
-                .toLowerCase()}_${product._id}`
-            : `${product.name.replace(/ /g, "-").toLowerCase()}_${product._id}`
+            ? `${encodeURIComponent(
+                product.subcategory.replace(/ /g, "-")
+              )}/${encodeURIComponent(
+                product.name.replace(/ /g, "-").toLowerCase()
+              )}_${product._id}`
+            : `${encodeURIComponent(
+                product.name.replace(/ /g, "-").toLowerCase()
+              )}_${product._id}`
         }
       >
         <div className="product-card-content__image-container">

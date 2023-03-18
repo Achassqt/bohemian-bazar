@@ -155,10 +155,11 @@ function Categories({ userId }) {
                       //   pointerEvents: userId !== "no token" && "none",
                       // }}
                       className="cards__card--link"
-                      to={`/${product.category.replace(
-                        / /g,
-                        "-"
-                      )}/${product.subcategory.replace(/ /g, "-")}`}
+                      to={`/${encodeURIComponent(
+                        product.category.replace(/ /g, "-")
+                      )}/${encodeURIComponent(
+                        product.subcategory.replace(/ /g, "-")
+                      )}`}
                     >
                       {product.imageUrl && (
                         <img

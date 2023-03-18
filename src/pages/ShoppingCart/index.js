@@ -38,12 +38,13 @@ function ShoppingCart() {
               >
                 <div className="link-img-container">
                   <Link
-                    to={`/${product.category.replace(
-                      / /g,
-                      "-"
-                    )}/${product.subcategory.replace(/ /g, "-")}/${product.name
-                      .replace(/ /g, "-")
-                      .toLowerCase()}_${product.id}`}
+                    to={`/${encodeURIComponent(
+                      product.category.replace(/ /g, "-")
+                    )}/${encodeURIComponent(
+                      product.subcategory.replace(/ /g, "-")
+                    )}/${encodeURIComponent(
+                      product.name.replace(/ /g, "-").toLowerCase()
+                    )}_${product.id}`}
                     className="products__product__link"
                   >
                     <img src={product.imageUrl} alt="produit" />

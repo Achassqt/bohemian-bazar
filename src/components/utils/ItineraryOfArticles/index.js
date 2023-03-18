@@ -7,17 +7,16 @@ function ItineraryOfArticle({ category, subcategory, name }) {
         <Link to="/">
           <li className="itinerary-of-articles__content__home">Accueil</li>
         </Link>
-        <Link to={`/${category.replace(/ /g, "-")}`}>
+        <Link to={`/${encodeURIComponent(category.replace(/ /g, "-"))}`}>
           <li className="itinerary-of-articles__content__category">
             {category}
           </li>
         </Link>
         {subcategory && (
           <Link
-            to={`/${category.replace(/ /g, "-")}/${subcategory.replace(
-              / /g,
-              "-"
-            )}`}
+            to={`/${encodeURIComponent(
+              category.replace(/ /g, "-")
+            )}/${encodeURIComponent(subcategory.replace(/ /g, "-"))}`}
           >
             <li className="itinerary-of-articles__content__category">
               {subcategory}
