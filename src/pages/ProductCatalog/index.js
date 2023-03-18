@@ -39,9 +39,10 @@ function ProductCatalog({
   const productExists =
     products &&
     products.some((product) => {
-      return (
-        product.category === category || product.subcategory === subcategory
-      );
+      return subcategory
+        ? product.category.toLowerCase() === category &&
+            product.subcategory.toLowerCase() === subcategory
+        : product.category.toLowerCase() === category;
     });
 
   if (!productExists) {
