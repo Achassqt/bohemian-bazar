@@ -109,24 +109,28 @@ function Subcategories({ products, userId, category, setActiveFunctionClose }) {
             );
           })}
 
-      <li
-        onClick={() => {
-          setActiveFunctionClose(true);
-        }}
-      >
-        <Link
-          to={`/${encodeURIComponent(
-            category
-              .replace(/ /g, "-")
-              // .normalize("NFD")
-              // .replace(/[\u0300-\u036f]/g, "")
-              .toLowerCase()
-          )}`}
-          className="subcategories__subcategory--link"
+      {!isEmpty(subcategoriesArray) ? (
+        <li
+          onClick={() => {
+            setActiveFunctionClose(true);
+          }}
         >
-          Voir tout
-        </Link>
-      </li>
+          <Link
+            to={`/${encodeURIComponent(
+              category
+                .replace(/ /g, "-")
+                // .normalize("NFD")
+                // .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+            )}`}
+            className="subcategories__subcategory--link"
+          >
+            Voir tout
+          </Link>
+        </li>
+      ) : (
+        <span>Désolé, je n'ai actuellement plus de {category} en stock.</span>
+      )}
     </div>
   );
 }

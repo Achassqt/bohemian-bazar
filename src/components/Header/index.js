@@ -4,6 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import logo from "../../assets/logo_bohemian-bazar.svg";
 import accountLogo from "../../assets/account-logo.svg";
 import shoppingCartLogo from "../../assets/shopping-cart-logo.svg";
+import empty from "../../assets/empty.png";
 
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -100,40 +101,52 @@ function Header({
               >
                 <span className="modal-product-in-cart__title">Mon panier</span>
                 <div className="modal-product-in-cart__products">
-                  {cart.map((product, index) => {
-                    return (
-                      <div
-                        key={`${product.name}-${index}`}
-                        className="modal-product-in-cart__products__product"
-                      >
-                        <img src={product.imageUrl} alt="produit" />
-                        <div className="modal-product-in-cart__products__product__right">
-                          <div className="modal-product-in-cart__products__product__right__header">
-                            <span className="modal-product-in-cart__products__product__right__header__name">
-                              {product.name}
-                            </span>
-                            <span className="modal-product-in-cart__products__product__right__header__price">
-                              {product.price} €
-                            </span>
+                  {!isEmpty(cart) ? (
+                    cart.map((product, index) => {
+                      return (
+                        <div
+                          key={`${product.name}-${index}`}
+                          className="modal-product-in-cart__products__product"
+                        >
+                          <img src={product.imageUrl} alt="produit" />
+                          <div className="modal-product-in-cart__products__product__right">
+                            <div className="modal-product-in-cart__products__product__right__header">
+                              <span className="modal-product-in-cart__products__product__right__header__name">
+                                {product.name}
+                              </span>
+                              <span className="modal-product-in-cart__products__product__right__header__price">
+                                {product.price} €
+                              </span>
+                            </div>
+                            {!isEmpty(product.size) && (
+                              <span>Taille : {product.size}</span>
+                            )}
                           </div>
-                          {!isEmpty(product.size) && (
-                            <span>Taille : {product.size}</span>
-                          )}
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })
+                  ) : (
+                    <div className="empty-cart">
+                      <img src={empty} alt="panier vide" />
+                      <span>Votre panier est vide</span>
+                    </div>
+                  )}
                 </div>
                 <div className="modal-product-in-cart__summary">
                   <div className="modal-product-in-cart__summary__prices">
                     <div className="modal-product-in-cart__summary__prices__price">
                       <span>Livraison</span>
-                      <span>{totalPrice >= 80 ? 0.0 : 4.99} €</span>
+                      <span>
+                        {isEmpty(cart) ? "0.00" : totalPrice >= 80 ? 0.0 : 4.99}{" "}
+                        €
+                      </span>
                     </div>
                     <div className="modal-product-in-cart__summary__prices__price">
                       <span>Total</span>
                       <span>
-                        {totalPrice >= 80
+                        {isEmpty(cart)
+                          ? "0.00"
+                          : totalPrice >= 80
                           ? totalPrice
                           : (totalPrice + 4.99).toFixed(2)}{" "}
                         €

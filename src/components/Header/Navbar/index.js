@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import useSWR from "swr";
 import { categoriesArray } from "../../utils";
 import Subcategories from "./subcategories";
-import SubcategoriesCarousel from "./subcategoriesCarousel";
 
 function Navbar({
   setActiveFunctionOpen,
@@ -187,9 +186,14 @@ function Navbar({
                 <span className="category__header__title">
                   {category.title}
                 </span>
-                <span id={`arrow-${index}`} className="category__header__arrow">
-                  {">"}
-                </span>
+                {category.title !== "CARTE CADEAU" && (
+                  <span
+                    id={`arrow-${index}`}
+                    className="category__header__arrow"
+                  >
+                    {">"}
+                  </span>
+                )}
               </div>
               {category.title !== "CARTE CADEAU" && (
                 <ul id={`subcategories-${index}`} className="subcategories">
@@ -199,7 +203,6 @@ function Navbar({
                     category={category.title}
                     setActiveFunctionClose={setActiveFunctionClose}
                   />
-                  {/* <SubcategoriesCarousel products={products} index={index} /> */}
                 </ul>
               )}
             </li>
