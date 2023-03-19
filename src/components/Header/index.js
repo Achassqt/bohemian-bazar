@@ -1,7 +1,7 @@
 import { HiOutlineMenu } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 // import logo from "../../assets/logo_site_web_bohemian-bazar.svg";
-import logo from "../../assets/logo_bohemian-bazar.svg";
+import logo from "../../assets/logo_bohemian-bazar.png";
 import accountLogo from "../../assets/account-logo.svg";
 import shoppingCartLogo from "../../assets/shopping-cart-logo.svg";
 import empty from "../../assets/empty.png";
