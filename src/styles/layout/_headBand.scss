@@ -2,18 +2,17 @@
   background-color: black;
   color: white;
   font-family: "Trocchi";
-  //   height: 30px;
   padding: 5px 20px;
   overflow: hidden;
 
   &__txt {
-    font-size: 20px;
+    font-size: 16px;
     white-space: nowrap;
     transform: translateX(110%);
     animation: translateX 20s linear infinite;
 
     @include tablette {
-      font-size: 24px;
+      font-size: 22px;
     }
 
     @media (min-width: 1190px) {

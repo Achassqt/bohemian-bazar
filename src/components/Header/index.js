@@ -1,6 +1,7 @@
 import { HiOutlineMenu } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
-import logo from "../../assets/logo_site_web_bohemian-bazar.svg";
+// import logo from "../../assets/logo_site_web_bohemian-bazar.svg";
+import logo from "../../assets/logo_bohemian-bazar.svg";
 import accountLogo from "../../assets/account-logo.svg";
 import shoppingCartLogo from "../../assets/shopping-cart-logo.svg";
 
@@ -35,29 +36,6 @@ function Header({
   return (
     <header className="header">
       <div className="header__top">
-        <div className="menu-btn-container">
-          <button
-            onClick={() => {
-              setActiveFunctionOpen(true);
-              setMenuOpen(true);
-            }}
-            className="menu-btn"
-            id="menu-btn"
-          >
-            <HiOutlineMenu />
-          </button>
-          <button
-            style={{ display: "none" }}
-            onClick={() => {
-              setActiveFunctionClose(true);
-              setMenuOpen(false);
-            }}
-            className="menu-btn"
-            id="close-btn"
-          >
-            <AiOutlineClose />
-          </button>
-        </div>
         {/* <form>
         <input
         type="text"
@@ -198,6 +176,29 @@ function Header({
               </div>
             )}
           </div>
+          {/* <div className="menu-btn-container"> */}
+          <button
+            onClick={() => {
+              setActiveFunctionOpen(true);
+              setMenuOpen(true);
+            }}
+            className="menu-btn"
+            id="menu-btn"
+          >
+            <HiOutlineMenu />
+          </button>
+          <button
+            style={{ display: "none" }}
+            onClick={() => {
+              setActiveFunctionClose(true);
+              setMenuOpen(false);
+            }}
+            className="menu-btn"
+            id="close-btn"
+          >
+            <AiOutlineClose />
+          </button>
+          {/* </div> */}
         </div>
       </div>
       <Navbar

@@ -199,7 +199,7 @@ function Navbar({
                     category={category.title}
                     setActiveFunctionClose={setActiveFunctionClose}
                   />
-                  <SubcategoriesCarousel products={products} index={index} />
+                  {/* <SubcategoriesCarousel products={products} index={index} /> */}
                 </ul>
               )}
             </li>

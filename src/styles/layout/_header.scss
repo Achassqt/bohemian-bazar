@@ -1,5 +1,5 @@
 .header {
-  max-width: 1400px;
+  // max-width: 1400px;
   margin: auto;
   position: relative;
   &--menu {
@@ -8,6 +8,7 @@
     left: 0;
     z-index: 2;
     background-color: rgba($color: #ffffff, $alpha: 0.8);
+    backdrop-filter: blur(5px);
     height: 100vh;
     width: 100%;
     z-index: 10;
@@ -22,121 +23,95 @@
     // background-color: red;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    padding: 30px 10px;
-    padding-left: 5px;
+    align-items: center;
+    padding: 10px 20px;
+    // padding-left: 15px;
 
-    @include mobileM {
-      padding: 30px 20px;
-      padding-left: 16px;
+    @include laptop {
+      padding: 10px 30px;
     }
-    @include tablette {
-      padding: 40px 20px;
+
+    @media (min-width: 1300px) {
+      margin-bottom: -50px;
+      align-items: flex-start;
     }
-  }
-}
 
-.menu-btn-container {
-  @include mobileL {
-    width: 64px;
-  }
-  @include tablette {
-    width: 105px;
-  }
-}
-
-.menu-btn {
-  background-color: inherit;
-  border: none;
-  padding: 0;
-  height: 30px;
-  width: 30px;
-
-  @include tablette {
-    display: none !important;
-  }
-
-  & > svg {
-    width: 100%;
-    height: 100%;
+    @include laptopL {
+      padding: 10px 50px;
+    }
   }
 }
 
 .logo-bb {
   display: flex;
   justify-content: center;
+  z-index: 10;
   cursor: pointer;
   & > img {
-    width: 210px;
-    // max-width: 300px;
-    @media (min-width: 500px) {
-      width: 300px;
+    width: 100px;
+
+    @include mobileL {
+      width: 140px;
     }
     @include tablette {
-      width: 400px;
-      // padding: 10px 0 0;
+      width: 160px;
     }
 
     @include laptop {
-      width: 500px;
+      width: 180px;
     }
+
     @include laptopL {
-      width: 600px;
+      width: 220px;
     }
   }
 }
 
 .customer {
-  // padding-left: 5px;
-  width: 30px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  @include mobileL {
-    flex-direction: row;
-    width: 69px;
-    justify-content: space-between;
-    // justify-content: flex-end;
+  align-items: center;
+
+  @media (min-width: 1300px) {
+    margin-top: 30px;
   }
-  @include tablette {
-    width: 110px;
-  }
+
   &__account {
-    margin-top: 3px;
     width: 25px;
     height: 25px;
+    padding: 0 10px;
     cursor: pointer;
 
     @include mobileL {
-      margin: 0;
       width: 30px;
       height: 30px;
+      padding: 0 12px;
     }
     @include tablette {
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
     }
     & > img {
       width: 100%;
       height: 100%;
+      // color: rgba($color: #747474, $alpha: 1);
     }
   }
 
   &__shopping-cart {
-    margin-top: 5px;
     width: 25px;
     height: 25px;
+    padding: 0 10px;
     cursor: pointer;
     position: relative;
 
     @include mobileL {
-      margin: 0;
       width: 30px;
       height: 30px;
+      padding: 0 12px;
     }
     @include tablette {
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
     }
 
     &__number-products-in-cart {
@@ -319,10 +294,46 @@
   }
 }
 
+// .menu-btn-container {
+//   padding-left: 10px;
+//   @include mobileL {
+//     width: 64px;
+//   }
+//   @include tablette {
+//     width: 105px;
+//   }
+// }
+
+.menu-btn {
+  background-color: inherit;
+  border: none;
+  padding: 0;
+  height: 26px;
+  width: 26px;
+  padding-left: 10px;
+  box-sizing: content-box;
+
+  @include mobileL {
+    height: 30px;
+    width: 30px;
+    padding-left: 12px;
+  }
+
+  @include tablette {
+    display: none !important;
+  }
+
+  & > svg {
+    width: 100%;
+    height: 100%;
+    color: #565656;
+  }
+}
+
 .navbar {
   position: relative;
   display: none;
-  padding: 10px;
+  padding: 20px 10px;
   font-family: "Handlee";
 
   @include mobileM {
@@ -332,8 +343,16 @@
     display: block !important;
     transform-origin: top;
     height: 50px;
-    // padding-top: 0;
+    padding: 0;
     padding-bottom: 0;
+  }
+
+  @media (min-width: 1300px) {
+    top: -64px;
+  }
+
+  @include laptopL {
+    top: -75px;
   }
 }
 
@@ -346,6 +365,11 @@
     justify-content: space-evenly;
     align-items: center;
     height: inherit;
+  }
+
+  @media (min-width: 1300px) {
+    max-width: 900px;
+    margin: auto;
   }
 }
 .category {
@@ -364,7 +388,6 @@
   @include tablette {
     display: flex;
     align-items: center;
-    padding: 0 10px;
     height: 100%;
     text-align: center;
     margin: 0;
@@ -379,11 +402,11 @@
     width: fit-content;
     // margin-bottom: 10px;
     &__title {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: bold;
 
       @include laptop {
-        font-size: 21px;
+        font-size: 18px;
       }
     }
     &__arrow {
@@ -400,7 +423,7 @@
 .subcategories {
   display: none;
   // transform: scaleY(1);
-  padding: 10px 15px;
+  padding: 15px;
   padding-bottom: 0;
   color: black;
   font-family: "Trocchi";
@@ -412,7 +435,7 @@
     transition: transform 0.5s ease;
     transform-origin: top;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     position: absolute;
     top: 100%;
@@ -420,6 +443,7 @@
     width: 100%;
     box-sizing: border-box;
     background-color: rgba($color: #ffffff, $alpha: 0.8);
+    backdrop-filter: blur(3px);
     z-index: 1;
     padding: 20px 40px;
     // padding-bottom: 0;
@@ -427,14 +451,17 @@
   }
 
   &__subcategory {
-    margin-bottom: 5px;
-    font-size: 16px;
+    font-size: 14px;
+    min-width: max-content;
 
     @include tablette {
       align-self: flex-start;
+      // max-height: 50px;
+      columns: 2;
+      column-gap: 150px;
     }
     @include laptop {
-      font-size: 18px;
+      font-size: 16px;
     }
 
     & > li {
@@ -443,10 +470,13 @@
       display: flex;
       align-items: center;
 
+      &:first-of-type {
+        margin-top: 0;
+      }
+
       &:last-of-type {
         color: red;
-        font-weight: bold;
-        margin-top: 15px;
+        // margin-top: 12px
       }
     }
     &--link {

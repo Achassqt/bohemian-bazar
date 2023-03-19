@@ -1,6 +1,6 @@
 .slide-container {
   position: relative;
-  max-width: 1400px;
+  // max-width: 1300px;
   margin: auto;
 }
 
@@ -71,7 +71,7 @@
 .image-container {
   position: relative;
   @include laptop {
-    padding: 0 20px;
+    // padding: 0 20px;
   }
   & > button {
     position: absolute;
@@ -80,11 +80,11 @@
   }
   & > img {
     width: 100%;
-    max-height: 770px;
+    // max-height: 770px;
     pointer-events: none;
 
     @include laptop {
-      border-radius: 20px;
+      // border-radius: 10px;
     }
   }
 }

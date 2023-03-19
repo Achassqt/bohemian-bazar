@@ -6,6 +6,8 @@
     flex-direction: column;
     padding: 30px 20px;
     padding-bottom: 0;
+    max-width: 1440px;
+    margin: auto;
 
     @include tablette {
       flex-direction: row;
@@ -33,12 +35,12 @@
         font-family: "Handlee";
         color: #bab5af;
         margin: 0;
-        font-size: 18px;
+        font-size: 16px;
         margin-bottom: 15px;
         width: fit-content;
 
         @include laptop {
-          font-size: 21px;
+          font-size: 18px;
         }
       }
       &__list {
@@ -47,9 +49,10 @@
         & > li {
           margin-bottom: 5px;
           width: fit-content;
+          font-size: 14px;
 
           @include laptop {
-            font-size: 18px;
+            font-size: 16px;
           }
         }
       }
