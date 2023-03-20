@@ -1,16 +1,12 @@
 .product-card-content {
   width: 100%;
-  // max-width: 450px;
+  max-width: 500px;
   height: auto;
   padding: 15px 10px;
   box-sizing: border-box;
 
-  @include tablette {
-    // max-width: 360px;
-  }
-
-  @include laptop {
-    // max-width: 450px;
+  @media (min-width: 1570px) {
+    max-width: none;
   }
 
   //   &:hover > .show-sizes-btn {

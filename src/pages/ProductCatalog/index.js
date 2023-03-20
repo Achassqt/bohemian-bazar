@@ -107,8 +107,9 @@ function ProductCatalog({
             })
             .map((product, index) => {
               return subcategory &&
-                category === product.category.toLowerCase() &&
-                subcategory === product.subcategory.toLowerCase() ? (
+                category.toLowerCase() === product.category.toLowerCase() &&
+                subcategory.toLowerCase() ===
+                  product.subcategory.toLowerCase() ? (
                 <ProductCard
                   key={`product-card-${index}`}
                   product={product}
@@ -118,16 +119,17 @@ function ProductCatalog({
                   setShowMsgAddProductInCart={setShowMsgAddProductInCart}
                 />
               ) : (
-                !subcategory && category === product.category && (
-                  <ProductCard
-                    key={`product-card-${index}`}
-                    product={product}
-                    subcategory={subcategory}
-                    index={index}
-                    setShowModalProductInCart={setShowModalProductInCart}
-                    setShowMsgAddProductInCart={setShowMsgAddProductInCart}
-                  />
-                )
+                !subcategory &&
+                  category.toLowerCase() === product.category.toLowerCase() && (
+                    <ProductCard
+                      key={`product-card-${index}`}
+                      product={product}
+                      subcategory={subcategory}
+                      index={index}
+                      setShowModalProductInCart={setShowModalProductInCart}
+                      setShowMsgAddProductInCart={setShowMsgAddProductInCart}
+                    />
+                  )
               );
             })}
       </div>

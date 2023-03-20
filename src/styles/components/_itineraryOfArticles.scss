@@ -1,19 +1,19 @@
 .itinerary-of-articles {
-  padding: 10px 10px;
+  padding: 10px 20px;
   display: flex;
   justify-content: flex-start;
-  max-width: 1400px;
   margin: auto;
   box-sizing: border-box;
   font-family: "Trocchi";
 
-  @include mobileM {
-    // padding: 10px 20px;
+  @include laptop {
+    padding: 10px 30px;
   }
 
-  @include tablette {
-    // padding: 20px;
+  @include laptopL {
+    padding: 10px 50px;
   }
+
   &__content {
     display: flex;
     flex-wrap: wrap;

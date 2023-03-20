@@ -1,46 +1,7 @@
 .product-catalog-wrapper {
-  max-width: 1400px;
+  // max-width: 1400px;
   margin: auto;
 }
-
-// .itinerary-of-articles {
-//   padding: 10px 10px;
-//   display: flex;
-//   justify-content: flex-start;
-//   max-width: 1400px;
-//   margin: auto;
-//   box-sizing: border-box;
-//   font-family: "Trocchi";
-
-//   @include mobileM {
-//     // padding: 10px 20px;
-//   }
-
-//   @include tablette {
-//     // padding: 20px;
-//   }
-//   &__content {
-//     display: flex;
-//     text-transform: uppercase;
-//     font-size: 10px;
-//     &__home {
-//     }
-
-//     &__category {
-//       &::before {
-//         content: ">";
-//         margin: 0 5px;
-//       }
-//     }
-
-//     &__subcategory {
-//       &::before {
-//         content: ">";
-//         margin: 0 5px;
-//       }
-//     }
-//   }
-// }
 
 .product-catalog {
   &__header {
@@ -48,7 +9,7 @@
     top: 0;
     z-index: 1;
     background-color: rgba($color: white, $alpha: 0.9);
-    padding: 10px 10px;
+    padding: 10px 20px;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -60,10 +21,18 @@
       justify-content: space-between;
     }
 
+    @include laptop {
+      padding: 10px 30px;
+    }
+
+    @include laptopL {
+      padding: 10px 50px;
+    }
+
     &__category {
       font-weight: bold;
       font-size: 20px;
-      text-transform: capitalize;
+      text-transform: uppercase;
 
       @include tablette {
         font-size: 30px;
@@ -77,6 +46,7 @@
       @include mobileL {
         position: relative;
         bottom: 3.5px;
+        min-width: 241px;
       }
 
       &__sizes {
@@ -125,6 +95,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 0 10px;
     padding-bottom: 50px;
 
     @include mobileL {
@@ -136,6 +107,20 @@
       // justify-content: space-evenly;
       grid-template-columns: repeat(3, 1fr);
       padding-top: 10px;
+    }
+
+    @include laptop {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    @include laptopL {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    @media (min-width: 1570px) {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 }
