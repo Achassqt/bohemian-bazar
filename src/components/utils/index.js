@@ -40,3 +40,10 @@ export const sizesArray = [
   "L/XL",
   "Non",
 ];
+
+export function preloadImages(imageUrls) {
+  imageUrls.forEach((imageUrl) => {
+    const img = new Image();
+    img.src = imageUrl;
+  });
+}

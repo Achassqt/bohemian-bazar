@@ -3,7 +3,6 @@ import "react-slideshow-image/dist/styles.css";
 import useSWR, { useSWRConfig } from "swr";
 import { useState } from "react";
 import { isEmpty } from "../utils";
-import ImagePreloader from "../utils/ImagePreloader";
 
 function Carousel({ userId, menuOpen }) {
   const { fetcher, mutate } = useSWRConfig();
@@ -48,12 +47,12 @@ function Carousel({ userId, menuOpen }) {
     ),
   };
 
-  const loadingStyle = {
-    backgroundColor: "red",
-    width: "100%",
-    height: "770px",
-    borderRadius: "20px",
-  };
+  // const loadingStyle = {
+  //   backgroundColor: "red",
+  //   width: "100%",
+  //   height: "770px",
+  //   borderRadius: "20px",
+  // };
 
   return (
     <div className="slide-container">
@@ -84,11 +83,11 @@ function Carousel({ userId, menuOpen }) {
                       Supprimer
                     </button>
                   )}
-                  {/* <img src={image.imageUrl} alt="qui va la" /> */}
-                  <ImagePreloader
+                  <img src={image.imageUrl} alt="qui va la" />
+                  {/* <ImagePreloader
                     src={image.imageUrl}
                     loadingStyle={loadingStyle}
-                  />
+                  /> */}
                 </div>
               </div>
             );
