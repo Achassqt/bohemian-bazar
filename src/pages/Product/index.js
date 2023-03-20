@@ -146,7 +146,7 @@ function Product({ setShowModalProductInCart, setShowMsgAddProductInCart }) {
             >
               Ajouter au panier
             </button>
-            {userId !== "no token" && (
+            {userId && userId !== "no token" && (
               <div className="edit-btns">
                 <button onClick={() => setEditProduct(true)}>
                   Modifier le produit

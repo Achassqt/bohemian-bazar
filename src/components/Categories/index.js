@@ -34,7 +34,7 @@ function Categories({ userId }) {
 
   return (
     <>
-      {userId !== "no token" && (
+      {userId && userId !== "no token" && (
         <select
           className="select-display"
           onChange={async (e) => {
@@ -73,7 +73,7 @@ function Categories({ userId }) {
                   <div
                     className="cards__card"
                     onDragStart={(e) => {
-                      if (userId === "no token") return;
+                      if (userId && userId === "no token") return;
                       dragged = e.currentTarget;
                       e.dataTransfer.setData(
                         "text/plain",
@@ -83,11 +83,11 @@ function Categories({ userId }) {
                       e.dataTransfer.setData("id", product._id);
                     }}
                     onDragOver={(e) => {
-                      if (userId === "no token") return;
+                      if (userId && userId === "no token") return;
                       e.preventDefault();
                     }}
                     onDrop={async (e) => {
-                      if (userId === "no token") return;
+                      if (userId && userId === "no token") return;
                       dragged.innerHTML = e.currentTarget.innerHTML;
                       e.currentTarget.innerHTML =
                         e.dataTransfer.getData("text/plain");
@@ -131,7 +131,7 @@ function Categories({ userId }) {
                         .catch((err) => console.log(err));
                     }}
                   >
-                    {userId !== "no token" && (
+                    {userId && userId !== "no token" && (
                       <button
                         onClick={async () => {
                           await fetcher(`api/products/${product._id}`, "PUT", {

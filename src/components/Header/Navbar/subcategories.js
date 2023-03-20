@@ -38,7 +38,7 @@ function Subcategories({ products, userId, category, setActiveFunctionClose }) {
               <li
                 key={`${subcategory.name}-${index}`}
                 onDragStart={(e) => {
-                  if (userId === "no token") return;
+                  if (userId && userId === "no token") return;
                   dragged = e.currentTarget;
                   e.dataTransfer.setData(
                     "text/plain",
@@ -48,11 +48,11 @@ function Subcategories({ products, userId, category, setActiveFunctionClose }) {
                   e.dataTransfer.setData("id", subcategory.id);
                 }}
                 onDragOver={(e) => {
-                  if (userId === "no token") return;
+                  if (userId && userId === "no token") return;
                   e.preventDefault();
                 }}
                 onDrop={async (e) => {
-                  if (userId === "no token") return;
+                  if (userId && userId === "no token") return;
                   dragged.innerHTML = e.currentTarget.innerHTML;
                   e.currentTarget.innerHTML =
                     e.dataTransfer.getData("text/plain");

@@ -1132,7 +1132,7 @@ body {
 }
 @media (min-width: 1024px) {
   .cards {
-    max-width: 1440px;
+    max-width: none;
     gap: 45px;
   }
 }
@@ -1153,6 +1153,11 @@ body {
     flex: 20%;
     min-width: 250px;
     max-width: 300px;
+  }
+}
+@media (min-width: 1440px) {
+  .cards__card {
+    max-width: 500px;
   }
 }
 .cards__card__btn-delete {

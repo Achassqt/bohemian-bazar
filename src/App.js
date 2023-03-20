@@ -82,7 +82,7 @@ function App() {
 
           <Route path="*" element={<NotFound />} />
         </Routes>
-        {userId !== "no token" && (
+        {userId && userId !== "no token" && (
           <>
             <div
               className="new-product__link"

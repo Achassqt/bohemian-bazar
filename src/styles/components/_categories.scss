@@ -27,7 +27,8 @@
   }
 
   @include laptop {
-    max-width: 1440px;
+    max-width: none;
+    // max-width: 1440px;
     gap: 45px;
   }
 
@@ -47,9 +48,8 @@
       min-width: 250px;
       max-width: 300px;
     }
-    @include laptop {
-      // flex: 30%;
-      // max-width: 250px;
+    @include laptopL {
+      max-width: 500px;
     }
 
     &__btn-delete {

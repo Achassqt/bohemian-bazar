@@ -40,7 +40,7 @@ function Admin() {
         X
       </div>
       <div className="admin-container">
-        {userId === "no token" ? (
+        {userId && userId === "no token" ? (
           <form onSubmit={handleSubmit} className="form">
             <input
               type="text"

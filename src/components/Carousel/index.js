@@ -57,7 +57,7 @@ function Carousel({ userId, menuOpen }) {
 
   return (
     <div className="slide-container">
-      {userId !== "no token" && (
+      {userId && userId !== "no token" && (
         <form onSubmit={handleSubmit} className="file-form">
           <input type="file" onChange={(e) => setFile(e.target.files[0])} />
           {file && <button type="submit">Ajouter l'image</button>}
@@ -69,7 +69,7 @@ function Carousel({ userId, menuOpen }) {
             return (
               <div className="each-slide" key={index}>
                 <div className="image-container">
-                  {userId !== "no token" && (
+                  {userId && userId !== "no token" && (
                     <button
                       onClick={async () => {
                         await fetcher(
