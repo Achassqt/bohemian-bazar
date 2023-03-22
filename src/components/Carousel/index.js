@@ -5,10 +5,10 @@ import { useState } from "react";
 import { isEmpty } from "../utils";
 
 function Carousel({ userId, menuOpen }) {
-  const { fetcher, mutate } = useSWRConfig();
+  const { fetcher } = useSWRConfig();
   const [file, setFile] = useState();
 
-  const { data: images } = useSWR(
+  const { data: images, isLoading } = useSWR(
     `${process.env.REACT_APP_API_URL}api/carousel`
   );
 
@@ -47,12 +47,11 @@ function Carousel({ userId, menuOpen }) {
     ),
   };
 
-  // const loadingStyle = {
-  //   backgroundColor: "red",
-  //   width: "100%",
-  //   height: "770px",
-  //   borderRadius: "20px",
-  // };
+  const [loading, setLoading] = useState(true);
+
+  const handleImageLoad = () => {
+    setLoading(false);
+  };
 
   return (
     <div className="slide-container">
@@ -83,11 +82,15 @@ function Carousel({ userId, menuOpen }) {
                       Supprimer
                     </button>
                   )}
-                  <img src={image.imageUrl} alt="qui va la" />
-                  {/* <ImagePreloader
+                  {loading && (
+                    <div className="preload-img">Chargement des images...</div>
+                  )}
+                  <img
                     src={image.imageUrl}
-                    loadingStyle={loadingStyle}
-                  /> */}
+                    alt="qui va la"
+                    onLoad={handleImageLoad}
+                    style={{ display: loading ? "none" : "block" }}
+                  />
                 </div>
               </div>
             );

@@ -12,10 +12,9 @@ import HeadBand from "./components/Header/headBand";
 import Footer from "./components/Footer";
 import Product from "./pages/Product";
 import ShoppingCart from "./pages/ShoppingCart";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ScrollToTop from "./components/utils/ScrollToTop";
 import NotFound from "./pages/NotFound";
-import { preloadImages } from "./components/utils";
 
 const baseURL = `${process.env.REACT_APP_API_URL}`;
 const instance = axios.create({
@@ -43,10 +42,6 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showModalProductInCart, setShowModalProductInCart] = useState(false);
   const [showMsgAddProductInCart, setShowMsgAddProductInCart] = useState(false);
-
-  useEffect(() => {
-    preloadImages(["./assets/logo_bohemian-bazar.png", "./assets/empty.png"]);
-  });
 
   return (
     <BrowserRouter>

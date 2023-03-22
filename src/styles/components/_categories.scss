@@ -32,6 +32,10 @@
     gap: 45px;
   }
 
+  @include laptopL {
+    padding: 20px 50px;
+  }
+
   &__card {
     position: relative;
     // width: 175px;
@@ -49,7 +53,7 @@
       max-width: 300px;
     }
     @include laptopL {
-      max-width: 500px;
+      max-width: 420px;
     }
 
     &__btn-delete {

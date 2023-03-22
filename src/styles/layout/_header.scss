@@ -282,8 +282,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        & > img {
+        & > .img {
           width: 100px;
+          height: 160px;
+          background-image: url("../assets/empty.png");
+          background-size: cover;
         }
         & > span {
           padding: 20px;
@@ -377,6 +380,8 @@
   display: none;
   padding: 20px 10px;
   font-family: "Handlee";
+  font-style: italic;
+  // font-family: "Forum";
 
   @include mobileM {
     padding: 20px;
@@ -469,6 +474,7 @@
   padding-bottom: 0;
   color: black;
   font-family: "Trocchi";
+  font-style: normal;
 
   @include tablette {
     display: flex !important;

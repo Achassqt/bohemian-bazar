@@ -9,6 +9,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Forum&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Trocchi&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Corinthia&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sofia&display=swap");
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
@@ -654,8 +656,11 @@ body {
   flex-direction: column;
   align-items: center;
 }
-.customer__shopping-cart .modal-product-in-cart .empty-cart > img {
+.customer__shopping-cart .modal-product-in-cart .empty-cart > .img {
   width: 100px;
+  height: 160px;
+  background-image: url("../assets/empty.png");
+  background-size: cover;
 }
 .customer__shopping-cart .modal-product-in-cart .empty-cart > span {
   padding: 20px;
@@ -731,6 +736,7 @@ body {
   display: none;
   padding: 20px 10px;
   font-family: "Handlee";
+  font-style: italic;
 }
 @media (min-width: 375px) {
   .navbar {
@@ -830,6 +836,7 @@ body {
   padding-bottom: 0;
   color: black;
   font-family: "Trocchi";
+  font-style: normal;
 }
 @media (min-width: 768px) {
   .subcategories {
@@ -1116,8 +1123,15 @@ body {
 }
 .image-container > img {
   width: 100%;
+  max-height: 850px;
   pointer-events: none;
 }
+.preload-img {
+  width: 100%;
+  height: 700px;
+  background-color: red;
+}
+
 .select-display {
   position: relative;
   left: 50%;
@@ -1153,6 +1167,11 @@ body {
     gap: 45px;
   }
 }
+@media (min-width: 1440px) {
+  .cards {
+    padding: 20px 50px;
+  }
+}
 .cards__card {
   position: relative;
   width: 140px;
@@ -1174,7 +1193,7 @@ body {
 }
 @media (min-width: 1440px) {
   .cards__card {
-    max-width: 500px;
+    max-width: 420px;
   }
 }
 .cards__card__btn-delete {
@@ -1505,7 +1524,7 @@ body {
   width: 100%;
   max-width: 500px;
   height: auto;
-  padding: 15px 10px;
+  padding: 10px;
   box-sizing: border-box;
 }
 @media (min-width: 1570px) {
@@ -1515,6 +1534,7 @@ body {
 }
 .product-card-content__image-container {
   position: relative;
+  display: flex;
 }
 .product-card-content__image-container > img {
   width: 100%;
@@ -1522,7 +1542,7 @@ body {
 }
 .product-card-content__image-container .show-sizes-btn {
   position: absolute;
-  bottom: 5px;
+  bottom: 0;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 35px;
@@ -1545,21 +1565,39 @@ body {
   transition: transform 200ms ease-in;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 }
 .product-card-content__image-container .sizes {
-  padding-left: 20px;
+  height: 100%;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
 }
 .product-card-content__image-container .sizes__- {
-  margin: 0 5px;
-  font-size: 23px;
+  position: relative;
+  bottom: 2px;
 }
 .product-card-content__image-container .sizes__size {
-  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 10px;
+  min-width: 45px;
+  box-sizing: border-box;
+}
+.product-card-content__image-container .sizes__size:hover {
+  background-color: rgba(177, 177, 177, 0.3);
 }
 .product-card-content__infos {
   display: flex;
   justify-content: space-between;
+  font-family: "Trocchi";
+  padding-top: 5px;
+}
+.product-card-content__infos__price {
+  font-family: "Forum";
+  font-weight: bold;
 }
 
 .itinerary-of-articles {
@@ -1806,8 +1844,8 @@ body {
   }
 }
 .product-catalog__header__category {
-  font-weight: bold;
   font-size: 20px;
+  font-family: "Sofia";
   text-transform: uppercase;
 }
 @media (min-width: 768px) {
@@ -1819,12 +1857,14 @@ body {
   display: flex;
   align-items: flex-end;
   margin-top: 12px;
+  font-family: "Trocchi";
 }
 @media (min-width: 425px) {
   .product-catalog__header__filters {
     position: relative;
     bottom: 3.5px;
-    min-width: 241px;
+    min-width: 273px;
+    padding-left: 10px;
   }
 }
 .product-catalog__header__filters__sizes {
@@ -1953,8 +1993,12 @@ body {
     box-sizing: border-box;
   }
 }
+.product-infos > header {
+  display: flex;
+  justify-content: space-between;
+}
 .product-infos__name {
-  text-transform: uppercase;
+  font-family: "Trocchi";
   font-weight: normal;
   font-size: 20px;
   margin: 0;
@@ -1965,14 +2009,20 @@ body {
   }
 }
 .product-infos__price {
-  font-size: 20px;
+  font-family: "Forum";
+  font-weight: bold;
+  font-size: 22px;
+  min-width: 70px;
+  text-align: right;
 }
 @media (min-width: 1024px) {
   .product-infos__price {
-    font-size: 24px;
+    font-size: 30px;
+    min-width: 100px;
   }
 }
 .product-infos__description {
+  font-family: "Forum";
   margin-top: 20px;
   margin-bottom: 30px;
   font-size: 15px;
@@ -1982,7 +2032,7 @@ body {
   .product-infos__description {
     font-size: 20px;
     margin-top: 40px;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
   }
 }
 .product-infos__sizes {
@@ -1995,7 +2045,7 @@ body {
 }
 @media (min-width: 1024px) {
   .product-infos__sizes > li {
-    font-size: 20px;
+    font-size: 24px;
   }
 }
 .product-infos__sizes > li:hover {
@@ -2007,6 +2057,7 @@ body {
   top: 10px;
 }
 .product-infos .add-cart-btn {
+  font-family: "Trocchi";
   margin-top: 30px;
   text-transform: uppercase;
   background-color: transparent;
@@ -2026,7 +2077,9 @@ body {
   }
 }
 .product-infos .add-cart-btn:hover {
-  border-color: dimgray;
+  border-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(177, 177, 177, 0.3);
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .edit-btns {

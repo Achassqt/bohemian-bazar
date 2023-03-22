@@ -1,10 +1,10 @@
 import { HiOutlineMenu } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 // import logo from "../../assets/logo_site_web_bohemian-bazar.svg";
-import logo from "../../assets/logo_bohemian-bazar.png";
+import logo from "../../assets/logo_bohemian-bazar.svg";
 import accountLogo from "../../assets/account-logo.svg";
 import shoppingCartLogo from "../../assets/shopping-cart-logo.svg";
-import empty from "../../assets/empty.png";
+// import empty from "../../assets/empty.png";
 
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -127,7 +127,8 @@ function Header({
                     })
                   ) : (
                     <div className="empty-cart">
-                      <img src={empty} alt="panier vide" />
+                      {/* <img src={empty} alt="panier vide" /> */}
+                      <div className="img"></div>
                       <span>Votre panier est vide</span>
                     </div>
                   )}

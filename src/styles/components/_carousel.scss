@@ -80,11 +80,17 @@
   }
   & > img {
     width: 100%;
-    // max-height: 770px;
+    max-height: 850px;
     pointer-events: none;
 
     @include laptop {
       // border-radius: 10px;
     }
   }
+}
+
+.preload-img {
+  width: 100%;
+  height: 700px;
+  background-color: red;
 }

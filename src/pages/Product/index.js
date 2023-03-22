@@ -93,8 +93,10 @@ function Product({ setShowModalProductInCart, setShowMsgAddProductInCart }) {
             <img src={product.imageUrl} alt="product" />
           </div>
           <div className="product-infos">
-            <h2 className="product-infos__name">{product.name}</h2>
-            <span className="product-infos__price">{product.price} €</span>
+            <header>
+              <h2 className="product-infos__name">{product.name}</h2>
+              <span className="product-infos__price">{product.price} €</span>
+            </header>
             <p className="product-infos__description">{product.description}</p>
             <ul className="product-infos__sizes">
               {product.sizes
