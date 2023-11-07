@@ -8,15 +8,47 @@
   }
 }
 
+.products-wrapper {
+  padding: 20px;
+  padding-top: 0;
+  box-sizing: border-box;
+
+  & > header {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    left: 0;
+    font-family: "Sofia";
+    font-size: 20px;
+    text-transform: uppercase;
+    border-bottom: 1.5px solid black;
+    text-align: center;
+    padding: 20px 0 10px;
+    margin-bottom: 20px;
+    background-color: rgba($color: white, $alpha: 0.9);
+    z-index: 1;
+
+    @include tablette {
+      // font-size: 30px;
+    }
+
+    @include laptop {
+      text-align: left;
+    }
+  }
+}
+
 .products {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  // padding: 10px;
 
   @include tablette {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 20px;
+    gap: 40px;
+    row-gap: 20px;
     // width: 70%;
   }
 
@@ -31,13 +63,16 @@
   &__product {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    margin-bottom: 12px;
+    // padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 22px;
 
     @include tablette {
       flex-direction: column;
       width: 100%;
       margin-bottom: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     .link-img-container {
@@ -75,39 +110,47 @@
         margin-top: 12px;
       }
 
+      & > header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+
+        @include tablette {
+          margin-bottom: 10px;
+        }
+      }
+
       &__name {
+        font-family: "Trocchi";
         font-size: 15px;
         text-transform: uppercase;
         // line-height: 20px;
       }
 
-      &__infos {
-        display: flex;
-        flex-direction: column;
-        font-size: 15px;
-
-        @include tablette {
-          flex-direction: row;
-          justify-content: space-between;
-          margin-top: 5px;
-        }
-
-        &__price {
-          margin-top: 8px;
-
-          @include tablette {
-            margin: 0;
-          }
-        }
-
-        &__size {
-          margin-top: 15px;
-
-          @include tablette {
-            margin: 0;
-          }
-        }
+      &__price {
+        font-family: "Forum";
+        font-weight: bold;
+        font-size: 18px;
       }
+
+      // &__infos {
+      //   display: flex;
+      //   flex-direction: column;
+      //   font-size: 15px;
+
+      //   @include tablette {
+      //     flex-direction: row;
+      //     justify-content: space-between;
+      //     margin-top: 5px;
+      //   }
+
+      &__size {
+        font-family: "Trocchi";
+      }
+      // }
 
       &__actions {
         position: absolute;
@@ -119,12 +162,47 @@
         }
 
         &__delete {
+          font-family: "Trocchi";
           cursor: pointer;
           text-transform: uppercase;
-          font-size: 13px;
+          font-size: 12px;
+
+          &:hover {
+            text-decoration: underline;
+          }
+
+          @include tablette {
+            position: absolute;
+            right: 0;
+            bottom: 6px;
+          }
         }
       }
     }
+  }
+}
+
+.shopping-cart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  box-sizing: border-box;
+
+  & > .img {
+    width: 160px;
+    height: 260px;
+    background-image: url("../assets/empty.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+    right: 9px;
+  }
+  & > span {
+    font-family: "Trocchi";
+    font-size: 18px;
+    padding: 30px;
   }
 }
 
@@ -140,7 +218,7 @@
   border-bottom: 1.5px solid black;
 
   @include tablette {
-    top: 20px;
+    top: 50px;
     flex-direction: column-reverse;
     align-items: flex-start;
     max-width: 485px;
@@ -149,10 +227,13 @@
     border: none;
     border: 1.5px solid black;
     margin: 20px;
+    margin-top: 50px;
+    margin-bottom: 10px;
     padding: 20px;
   }
 
   & > button {
+    font-family: "Trocchi";
     flex: 1;
     border: none;
     background-color: black;
@@ -227,6 +308,7 @@
 }
 
 .order-price-container {
+  font-family: "Forum";
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -238,6 +320,7 @@
     padding: 0;
     &::before {
       content: "Total";
+      font-family: "Trocchi";
       font-weight: bold;
       font-size: 24px;
       margin-bottom: 20px;

@@ -515,6 +515,7 @@ body {
   }
 }
 .customer__shopping-cart__number-products-in-cart {
+  font-family: "Forum";
   background-color: pink;
   position: absolute;
   left: 20px;
@@ -558,6 +559,7 @@ body {
   overflow: auto;
   border: 2px solid black;
   padding: 20px;
+  padding-top: 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -575,10 +577,21 @@ body {
   }
 }
 .customer__shopping-cart .modal-product-in-cart__title {
+  font-family: "Handlee";
   display: inline-block;
   text-transform: uppercase;
   font-weight: bold;
-  margin-bottom: 20px;
+  font-size: 18px;
+  padding: 20px;
+  padding-bottom: 15px;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 10;
 }
 .customer__shopping-cart .modal-product-in-cart__products {
   align-self: flex-start;
@@ -591,13 +604,13 @@ body {
   padding: 10px 0;
 }
 .customer__shopping-cart .modal-product-in-cart__products__product > img {
-  width: 80px;
+  width: 90px;
 }
 .customer__shopping-cart .modal-product-in-cart__products__product__right {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 20px;
+  margin-left: 10px;
   width: 100%;
 }
 .customer__shopping-cart .modal-product-in-cart__products__product__right__header {
@@ -605,15 +618,36 @@ body {
   justify-content: space-between;
 }
 .customer__shopping-cart .modal-product-in-cart__products__product__right__header__name {
+  font-family: "Trocchi";
   max-width: 120px;
   text-transform: uppercase;
   font-size: 14px;
+  max-width: 110px;
+  position: relative;
+  top: 2px;
 }
 .customer__shopping-cart .modal-product-in-cart__products__product__right__header__price {
-  font-size: 14px;
+  font-family: "Forum";
+  font-weight: bold;
+  font-size: 16px;
+  text-align: right;
+}
+.customer__shopping-cart .modal-product-in-cart__products__product__right__description {
+  font-family: "Forum";
+  font-size: 13px;
+  line-height: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* nombre de lignes maximum à afficher */
+  -webkit-box-orient: vertical;
+  margin: 0;
+  margin-bottom: 10px;
+  box-sizing: border-box;
 }
 .customer__shopping-cart .modal-product-in-cart__products__product__right > span {
-  font-size: 14px;
+  font-family: "Trocchi";
+  font-size: 12px;
 }
 .customer__shopping-cart .modal-product-in-cart__summary {
   display: flex;
@@ -632,6 +666,7 @@ body {
 }
 .customer__shopping-cart .modal-product-in-cart__summary__prices > div {
   margin-bottom: 5px;
+  font-family: "Forum";
 }
 .customer__shopping-cart .modal-product-in-cart__summary__prices > div:last-of-type {
   font-weight: bold;
@@ -642,6 +677,7 @@ body {
   justify-content: space-between;
 }
 .customer__shopping-cart .modal-product-in-cart__summary > button {
+  font-family: "Trocchi";
   padding: 8px 0;
   text-transform: uppercase;
   border: 1px solid black;
@@ -655,14 +691,19 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 15px;
 }
 .customer__shopping-cart .modal-product-in-cart .empty-cart > .img {
   width: 100px;
   height: 160px;
   background-image: url("../assets/empty.png");
   background-size: cover;
+  position: relative;
+  right: 8px;
 }
 .customer__shopping-cart .modal-product-in-cart .empty-cart > span {
+  font-family: "Trocchi";
+  font-size: 14px;
   padding: 20px;
 }
 .customer__shopping-cart .add-cart-msg {
@@ -1123,7 +1164,7 @@ body {
 }
 .image-container > img {
   width: 100%;
-  max-height: 850px;
+  max-height: 900px;
   pointer-events: none;
 }
 .preload-img {
@@ -1193,7 +1234,7 @@ body {
 }
 @media (min-width: 1440px) {
   .cards__card {
-    max-width: 420px;
+    max-width: 350px;
   }
 }
 .cards__card__btn-delete {
@@ -1216,6 +1257,7 @@ body {
 .cards__card--link {
   display: block;
   width: inherit;
+  overflow: hidden;
 }
 .cards__card--link:hover {
   outline: 3px solid black;
@@ -1231,6 +1273,9 @@ body {
   background-color: rgba(255, 255, 255, 0.4);
   transition: all ease-out 500ms;
 }
+.cards__card--link:hover > img {
+  transform: scale(1.1);
+}
 @media (min-width: 425px) {
   .cards__card--link {
     width: 100%;
@@ -1240,6 +1285,7 @@ body {
   width: 100%;
   display: block;
   border-radius: 5px;
+  transition: transform ease-out 500ms;
 }
 .cards__card__title-container {
   margin: 0;
@@ -2077,7 +2123,6 @@ body {
   }
 }
 .product-infos .add-cart-btn:hover {
-  border-color: rgba(0, 0, 0, 0.8);
   background-color: rgba(177, 177, 177, 0.3);
   color: rgba(0, 0, 0, 0.8);
 }
@@ -2108,16 +2153,43 @@ body {
   }
 }
 
+.products-wrapper {
+  padding: 20px;
+  padding-top: 0;
+  box-sizing: border-box;
+}
+.products-wrapper > header {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  left: 0;
+  font-family: "Sofia";
+  font-size: 20px;
+  text-transform: uppercase;
+  border-bottom: 1.5px solid black;
+  text-align: center;
+  padding: 20px 0 10px;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 1;
+}
+@media (min-width: 1024px) {
+  .products-wrapper > header {
+    text-align: left;
+  }
+}
+
 .products {
   display: flex;
   flex-direction: column;
-  padding: 10px;
 }
 @media (min-width: 768px) {
   .products {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 20px;
+    gap: 40px;
+    row-gap: 20px;
   }
 }
 @media (min-width: 1024px) {
@@ -2133,14 +2205,16 @@ body {
 .products__product {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
-  margin-bottom: 12px;
+  margin-top: 10px;
+  margin-bottom: 22px;
 }
 @media (min-width: 768px) {
   .products__product {
     flex-direction: column;
     width: 100%;
     margin-bottom: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 }
 .products__product .link-img-container {
@@ -2180,37 +2254,31 @@ body {
     margin-top: 12px;
   }
 }
+.products__product__details > header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+@media (min-width: 768px) {
+  .products__product__details > header {
+    margin-bottom: 10px;
+  }
+}
 .products__product__details__name {
+  font-family: "Trocchi";
   font-size: 15px;
   text-transform: uppercase;
 }
-.products__product__details__infos {
-  display: flex;
-  flex-direction: column;
-  font-size: 15px;
+.products__product__details__price {
+  font-family: "Forum";
+  font-weight: bold;
+  font-size: 18px;
 }
-@media (min-width: 768px) {
-  .products__product__details__infos {
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 5px;
-  }
-}
-.products__product__details__infos__price {
-  margin-top: 8px;
-}
-@media (min-width: 768px) {
-  .products__product__details__infos__price {
-    margin: 0;
-  }
-}
-.products__product__details__infos__size {
-  margin-top: 15px;
-}
-@media (min-width: 768px) {
-  .products__product__details__infos__size {
-    margin: 0;
-  }
+.products__product__details__size {
+  font-family: "Trocchi";
 }
 .products__product__details__actions {
   position: absolute;
@@ -2223,9 +2291,43 @@ body {
   }
 }
 .products__product__details__actions__delete {
+  font-family: "Trocchi";
   cursor: pointer;
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 12px;
+}
+.products__product__details__actions__delete:hover {
+  text-decoration: underline;
+}
+@media (min-width: 768px) {
+  .products__product__details__actions__delete {
+    position: absolute;
+    right: 0;
+    bottom: 6px;
+  }
+}
+
+.shopping-cart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  box-sizing: border-box;
+}
+.shopping-cart-empty > .img {
+  width: 160px;
+  height: 260px;
+  background-image: url("../assets/empty.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+  right: 9px;
+}
+.shopping-cart-empty > span {
+  font-family: "Trocchi";
+  font-size: 18px;
+  padding: 30px;
 }
 
 .order-container {
@@ -2240,7 +2342,7 @@ body {
 }
 @media (min-width: 768px) {
   .order-container {
-    top: 20px;
+    top: 50px;
     flex-direction: column-reverse;
     align-items: flex-start;
     max-width: 485px;
@@ -2249,10 +2351,13 @@ body {
     border: none;
     border: 1.5px solid black;
     margin: 20px;
+    margin-top: 50px;
+    margin-bottom: 10px;
     padding: 20px;
   }
 }
 .order-container > button {
+  font-family: "Trocchi";
   flex: 1;
   border: none;
   background-color: black;
@@ -2322,6 +2427,7 @@ body {
 }
 
 .order-price-container {
+  font-family: "Forum";
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -2333,6 +2439,7 @@ body {
   }
   .order-price-container::before {
     content: "Total";
+    font-family: "Trocchi";
     font-weight: bold;
     font-size: 24px;
     margin-bottom: 20px;

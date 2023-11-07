@@ -32,57 +32,74 @@ function ShoppingCart() {
   return (
     <>
       <section className="shopping-cart-container">
-        <div className="products">
-          {cart.map((product, index) => {
-            return (
-              <div
-                key={`${product.name}-${index}`}
-                className="products__product"
-              >
-                <div className="link-img-container">
-                  <Link
-                    to={`/${encodeURIComponent(
-                      product.category.replace(/ /g, "-").toLowerCase()
-                    )}/${encodeURIComponent(
-                      product.subcategory.replace(/ /g, "-").toLowerCase()
-                    )}/${encodeURIComponent(
-                      product.name.replace(/ /g, "-").toLowerCase()
-                    )}_${product.id}`}
-                    className="products__product__link"
-                  >
-                    <img src={product.imageUrl} alt="produit" />
-                  </Link>
-                </div>
-                <div className="products__product__details">
-                  <span className="products__product__details__name">
-                    {product.name}
-                  </span>
-                  <div className="products__product__details__infos">
-                    <span className="products__product__details__infos__price">
-                      {product.price} €
-                    </span>
+        <div
+          style={{ width: isEmpty(cart) && "100%" }}
+          className="products-wrapper"
+        >
+          <header>Panier</header>
+          <div className="products">
+            {cart.map((product, index) => {
+              return (
+                <div
+                  key={`${product.name}-${index}`}
+                  className="products__product"
+                >
+                  <div className="link-img-container">
+                    <Link
+                      to={`/${encodeURIComponent(
+                        product.category.replace(/ /g, "-").toLowerCase()
+                      )}/${encodeURIComponent(
+                        product.subcategory.replace(/ /g, "-").toLowerCase()
+                      )}/${encodeURIComponent(
+                        product.name.replace(/ /g, "-").toLowerCase()
+                      )}_${product.id}`}
+                      className="products__product__link"
+                    >
+                      <img src={product.imageUrl} alt="produit" />
+                    </Link>
+                  </div>
+                  <div className="products__product__details">
+                    <header>
+                      <span className="products__product__details__name">
+                        {product.name}
+                      </span>
+                      <span className="products__product__details__price">
+                        {product.price} €
+                      </span>
+                    </header>
+
                     {!isEmpty(product.size) && (
-                      <span className="products__product__details__infos__size">
+                      <span className="products__product__details__size">
                         Taille : {product.size}
                       </span>
                     )}
-                  </div>
-                  <div className="products__product__details__actions">
-                    <span
-                      className="products__product__details__actions__delete"
-                      onClick={() => {
-                        removeProductFromCart(product.id, product.size);
-                      }}
-                    >
-                      Retirer
-                    </span>
+
+                    <div className="products__product__details__actions">
+                      <span
+                        className="products__product__details__actions__delete"
+                        onClick={() => {
+                          removeProductFromCart(product.id, product.size);
+                        }}
+                      >
+                        Retirer
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+          {isEmpty(cart) && (
+            <div className="shopping-cart-empty">
+              <div className="img"></div>
+              <span>Votre panier est vide</span>
+            </div>
+          )}
         </div>
-        <div className="order-container">
+        <div
+          style={{ display: isEmpty(cart) && "none" }}
+          className="order-container"
+        >
           <button onClick={() => setPaymentOnlineMsg(!paymentOnlineMsg)}>
             {paymentOnlineMsg ? "Ok" : "Commander"}
           </button>
@@ -121,7 +138,7 @@ function ShoppingCart() {
             </span>
             <span className="order-price-container__total">
               Total :{" "}
-              {totalPrice >= 80 ? totalPrice : (totalPrice + 4.99).toFixed(2)}€
+              {totalPrice >= 80 ? totalPrice : (totalPrice + 4.99).toFixed(2)} €
             </span>
           </div>
         </div>

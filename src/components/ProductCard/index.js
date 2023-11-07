@@ -19,7 +19,8 @@ function ProductCard({
     imageUrl,
     price,
     size,
-    quantity
+    quantity,
+    description
   ) {
     const product = {
       id,
@@ -30,6 +31,7 @@ function ProductCard({
       price,
       size,
       quantity,
+      description,
     };
 
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -86,7 +88,8 @@ function ProductCard({
                   product.imageUrl,
                   product.price,
                   product.sizes,
-                  product.quantity
+                  product.quantity,
+                  product.description
                 );
               }
             }}
@@ -121,7 +124,8 @@ function ProductCard({
                               product.imageUrl,
                               product.price,
                               size.size,
-                              product.quantity
+                              product.quantity,
+                              product.description
                             );
                           }}
                         >

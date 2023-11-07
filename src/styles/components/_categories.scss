@@ -53,7 +53,7 @@
       max-width: 300px;
     }
     @include laptopL {
-      max-width: 420px;
+      max-width: 350px;
     }
 
     &__btn-delete {
@@ -78,6 +78,7 @@
     &--link {
       display: block;
       width: inherit;
+      overflow: hidden;
 
       &:hover {
         outline: 3px solid black;
@@ -95,6 +96,10 @@
         transition: all ease-out 500ms;
       }
 
+      &:hover > img {
+        transform: scale(1.1);
+      }
+
       @include mobileL {
         width: 100%;
       }
@@ -105,6 +110,7 @@
       // height: auto;
       display: block;
       border-radius: 5px;
+      transition: transform ease-out 500ms;
     }
     &__title-container {
       margin: 0;

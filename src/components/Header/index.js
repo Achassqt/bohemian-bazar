@@ -73,6 +73,8 @@ function Header({
               onClick={() => {
                 navigate("/cart");
                 setShowModalProductInCart(false);
+                setActiveFunctionClose(true);
+                setMenuOpen(false);
               }}
               onMouseEnter={() => {
                 if (location.pathname === "/cart") {
@@ -99,7 +101,9 @@ function Header({
                 }}
                 className="modal-product-in-cart"
               >
-                <span className="modal-product-in-cart__title">Mon panier</span>
+                <header className="modal-product-in-cart__title">
+                  Mon panier
+                </header>
                 <div className="modal-product-in-cart__products">
                   {!isEmpty(cart) ? (
                     cart.map((product, index) => {
@@ -118,6 +122,9 @@ function Header({
                                 {product.price} €
                               </span>
                             </div>
+                            <p className="modal-product-in-cart__products__product__right__description">
+                              {product.description}
+                            </p>
                             {!isEmpty(product.size) && (
                               <span>Taille : {product.size}</span>
                             )}

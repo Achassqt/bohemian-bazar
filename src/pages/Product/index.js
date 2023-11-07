@@ -6,6 +6,7 @@ import PurchaseInfos from "../../components/PurchaseInfos";
 import { isEmpty, sizesArray } from "../../components/utils";
 import ItineraryOfArticle from "../../components/utils/ItineraryOfArticles";
 import NotFound from "../NotFound";
+import Magnifier from "../../components/utils/Magnifier";
 
 function Product({ setShowModalProductInCart, setShowMsgAddProductInCart }) {
   const [sizeSelected, setSizeSelected] = useState(null);
@@ -89,6 +90,11 @@ function Product({ setShowModalProductInCart, setShowMsgAddProductInCart }) {
           name={product.name}
         />
         <div className="product-details-container">
+          {/* <Magnifier
+            imageUrl={product.imageUrl}
+            zoomLevel={2}
+            zoomRadius={50}
+          /> */}
           <div className="product-image-container">
             <img src={product.imageUrl} alt="product" />
           </div>
