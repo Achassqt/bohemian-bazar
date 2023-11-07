@@ -279,6 +279,21 @@ function ProductForm({
               name={"subcategory"}
               type="text"
               placeholder={`Ex: "Robes`}
+              onInput={(e) => {
+                // Récupérez l'élément d'entrée
+                const inputElement = e.target;
+
+                // Récupérez la valeur actuelle de l'élément d'entrée
+                const value = inputElement.value;
+
+                // Remplacez les tirets (-) par une chaîne vide
+                const valeurSansTirets = value.replace(/-/g, "");
+
+                // Si la valeur a été modifiée, mettez à jour la valeur de l'élément d'entrée
+                if (value !== valeurSansTirets) {
+                  inputElement.value = valeurSansTirets;
+                }
+              }}
               onChange={handleInputChange}
             />
           </div>
