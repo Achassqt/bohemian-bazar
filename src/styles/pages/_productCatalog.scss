@@ -95,11 +95,13 @@
     }
   }
   &__container {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding: 0 10px;
     padding-bottom: 50px;
+    min-height: 200px;
 
     @include mobileL {
       display: grid;
@@ -125,5 +127,20 @@
     @media (min-width: 1570px) {
       grid-template-columns: repeat(4, 1fr);
     }
+  }
+}
+
+.noSizesMatch {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 15px;
+  // font-weight: bold;
+  font-family: "Trocchi";
+  text-align: center;
+
+  @include tablette {
+    font-size: 20px;
   }
 }

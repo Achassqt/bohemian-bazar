@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import ProductCard from "../../components/ProductCard";
@@ -13,9 +13,11 @@ function ProductCatalog({
   const { data: products } = useSWR(
     `${process.env.REACT_APP_API_URL}api/products`
   );
+  console.log(products);
 
   const [selectedSize, setSelectedSize] = useState(null);
   const [sortOrder, setSortOrder] = useState(null);
+  const [noSizesMatch, setNoSizesMatch] = useState(null);
 
   const handleSizeFilter = (size) => {
     setSelectedSize(size);
@@ -35,6 +37,28 @@ function ProductCatalog({
     : null;
   console.log(category);
   console.log(subcategory);
+
+  useEffect(() => {
+    const productsDisplayed =
+      !isEmpty(products) &&
+      products.filter((product) =>
+        subcategory
+          ? product.subcategory.toLowerCase() === subcategory
+          : product.category.toLowerCase() === category
+      );
+
+    console.log(productsDisplayed);
+
+    if (selectedSize && !isEmpty(selectedSize)) {
+      const allDifferent = productsDisplayed.every((product) =>
+        !isEmpty(product.sizes)
+          ? product.sizes.some((size) => size.size !== selectedSize)
+          : true
+      );
+      setNoSizesMatch(allDifferent);
+    } else setNoSizesMatch(null);
+    console.log(noSizesMatch);
+  }, [selectedSize, category, subcategory, products]);
 
   const productExists =
     products &&
@@ -132,6 +156,11 @@ function ProductCatalog({
                   )
               );
             })}
+        {noSizesMatch && (
+          <p className="noSizesMatch">
+            Je n'ai plus de stock pour cette taille ^^
+          </p>
+        )}
       </div>
     </div>
   );

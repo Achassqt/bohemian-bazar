@@ -353,9 +353,10 @@
       z-index: 10;
 
       &__add-msg {
+        font-family: "Trocchi";
         text-transform: uppercase;
         text-align: center;
-        font-weight: bold;
+        // font-weight: bold;
         margin-bottom: 20px;
       }
 
@@ -372,6 +373,7 @@
           padding: 8px 20px;
           text-transform: uppercase;
           font-size: 13px;
+          font-family: "Forum";
           cursor: pointer;
 
           &:hover {
