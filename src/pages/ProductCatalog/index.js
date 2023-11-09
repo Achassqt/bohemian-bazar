@@ -29,6 +29,7 @@ function ProductCatalog({
 
   const param = useParams();
   console.log(param);
+
   const category = decodeURIComponent(
     param.category.replace(/-/g, " ").normalize("NFC")
   );

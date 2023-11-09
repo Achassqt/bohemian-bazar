@@ -23,10 +23,17 @@ function Categories({ userId }) {
         subcategories[product.subcategory] === false &&
         product.display === false
       ) {
-        productsArray.push(product.subcategory);
+        let subcategoryName = product.subcategory;
+
+        if (product.category === "promotions") {
+          subcategoryName += " %";
+        }
+        // productsArray.push(product.subcategory);
+        productsArray.push(subcategoryName);
       }
     });
   }
+  console.log(productsArray);
 
   //regarder favoris barre de nav chrome pour avoir un article de chaque catégories
 
@@ -39,17 +46,38 @@ function Categories({ userId }) {
           className="select-display"
           onChange={async (e) => {
             // console.log(e.target.value);
+            let valueWithoutPercentage;
+            if (e.target.value.includes(" %")) {
+              valueWithoutPercentage = e.target.value.replace(" %", "");
+            }
+
+            const productSelectedWithoutPercentage = products.find(
+              (product) =>
+                product.category === "promotions" &&
+                valueWithoutPercentage === product.subcategory
+            );
+
+            console.log(productSelectedWithoutPercentage);
+
             const productSelected = products.find(
               (product) => e.target.value === product.subcategory
             );
-            await fetcher(`api/products/${productSelected._id}`, "PUT", {
-              display: true,
-            })
-              .then(() => {
-                mutate(`${process.env.REACT_APP_API_URL}api/products`);
-                e.target.value = "..";
+
+            console.log(productSelected);
+
+            const productToUse =
+              productSelectedWithoutPercentage || productSelected;
+
+            if (productToUse) {
+              await fetcher(`api/products/${productToUse._id}`, "PUT", {
+                display: true,
               })
-              .catch((err) => console.log(err));
+                .then(() => {
+                  mutate(`${process.env.REACT_APP_API_URL}api/products`);
+                  e.target.value = "..";
+                })
+                .catch((err) => console.log(err));
+            }
           }}
         >
           <option>Sélectionner pour afficher</option>
@@ -169,7 +197,11 @@ function Categories({ userId }) {
                         />
                       )}
                       <h2 className="cards__card__title-container">
-                        <span>{product.subcategory}</span>
+                        <span>
+                          {product.category === "promotions"
+                            ? product.subcategory + " %"
+                            : product.subcategory}
+                        </span>
                       </h2>
                     </Link>
                   </div>

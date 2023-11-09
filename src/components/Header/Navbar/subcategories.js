@@ -103,7 +103,9 @@ function Subcategories({ products, userId, category, setActiveFunctionClose }) {
                   )}`}
                   className="subcategories__subcategory--link"
                 >
-                  {subcategory.name}
+                  {subcategory.category === "promotions"
+                    ? subcategory.name + " %"
+                    : subcategory.name}
                 </Link>
               </li>
             );
