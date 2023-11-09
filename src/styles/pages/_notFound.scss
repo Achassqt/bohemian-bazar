@@ -1,0 +1,52 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  //   justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+
+  @include tablette {
+    margin-top: 10px;
+    margin-bottom: 80px;
+  }
+
+  & > h2 {
+    font-family: "Sofia";
+    margin-bottom: 30px;
+
+    @include tablette {
+      font-size: 30px;
+    }
+  }
+  &__content {
+    width: 80%;
+    border: 2px solid black;
+
+    @include tablette {
+      max-width: 600px;
+    }
+
+    & > p {
+      text-align: center;
+      margin: 0;
+      padding: 15px;
+      //   font-size: 20px;
+      font-family: "Trocchi";
+      line-height: 1.7;
+
+      @include tablette {
+        font-size: 20px;
+      }
+
+      & > a {
+        color: red;
+        font-weight: bold;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

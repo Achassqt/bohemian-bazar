@@ -1170,8 +1170,13 @@ body {
 }
 .preload-img {
   width: 100%;
-  height: 700px;
+  height: 200px;
   background-color: white;
+}
+@media (min-width: 768px) {
+  .preload-img {
+    height: 700px;
+  }
 }
 
 .select-display {
@@ -1305,7 +1310,6 @@ body {
 }
 .cards__card__title-container > span {
   text-transform: uppercase;
-  word-spacing: 200px;
   word-wrap: break-word;
   font-size: 16px;
   text-align: center;
@@ -2263,6 +2267,7 @@ body {
   position: relative;
   box-sizing: border-box;
   padding-left: 15px;
+  min-height: 55px;
 }
 @media (min-width: 768px) {
   .products__product__details {
@@ -2481,4 +2486,55 @@ body {
   .order-price-container__total {
     margin-bottom: 18px;
   }
+}
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+@media (min-width: 768px) {
+  .not-found {
+    margin-top: 10px;
+    margin-bottom: 80px;
+  }
+}
+.not-found > h2 {
+  font-family: "Sofia";
+  margin-bottom: 30px;
+}
+@media (min-width: 768px) {
+  .not-found > h2 {
+    font-size: 30px;
+  }
+}
+.not-found__content {
+  width: 80%;
+  border: 2px solid black;
+}
+@media (min-width: 768px) {
+  .not-found__content {
+    max-width: 600px;
+  }
+}
+.not-found__content > p {
+  text-align: center;
+  margin: 0;
+  padding: 15px;
+  font-family: "Trocchi";
+  line-height: 1.7;
+}
+@media (min-width: 768px) {
+  .not-found__content > p {
+    font-size: 20px;
+  }
+}
+.not-found__content > p > a {
+  color: red;
+  font-weight: bold;
+}
+.not-found__content > p > a:hover {
+  text-decoration: underline;
 }/*# sourceMappingURL=main.css.map */
