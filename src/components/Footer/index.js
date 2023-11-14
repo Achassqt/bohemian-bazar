@@ -1,4 +1,5 @@
 import { FaWhatsapp, FaFacebookF, FaInstagram } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -7,21 +8,23 @@ function Footer() {
         <li className="footer__nav__content">
           <h3 className="footer__nav__content__title">CATÉGORIES</h3>
           <ul className="footer__nav__content__list">
-            <li>Mode</li>
-            <li>Accessoires / Bijoux</li>
-            <li>Décoration</li>
-            <li>Promotion</li>
+            <Link to={`/${encodeURIComponent("prêt-à-porter")}`}>
+              Prêt à porter
+            </Link>
+            <Link to={`/${encodeURIComponent("bijoux-&-accessoires")}`}>
+              Accessoires / Bijoux
+            </Link>
+            <Link to={`/${encodeURIComponent("décoration")}`}>Décoration</Link>
+            <Link to={`/${encodeURIComponent("promotion")}`}>Promotion</Link>
           </ul>
         </li>
         <li className="footer__nav__content">
           <h3 className="footer__nav__content__title">INFOS PRATIQUES</h3>
           <ul className="footer__nav__content__list">
-            <li>Moyens de paiement</li>
-            <li>Conditions générales de vente</li>
-            <li>Formulaire de demande de retour</li>
-            <li>Conditions de retour et SAV</li>
-            <li>Mentions légales</li>
-            <li>Qui suis-je ?</li>
+            <Link to="/conditions-generales-de-ventes">
+              Conditions générales de vente
+            </Link>
+            <Link to="/mentions-legales">Mentions légales</Link>
           </ul>
         </li>
         <li className="footer__nav__content">
@@ -29,21 +32,31 @@ function Footer() {
           <ul className="footer__nav__content__list">
             <li>Un conseil ? Une commande ?</li>
             <li>Service client : du mardi au samedi 10h-19h</li>
-            <li>06.36.54.77.70</li>
-            <li>bohemianbazar@sfr.fr</li>
+            <a href="tel:0636547770">06.36.54.77.70</a>
+            <a href="mailto:bohemianbazar@sfr.fr">bohemianbazar@sfr.fr</a>
           </ul>
         </li>
       </nav>
       <div className="footer__social-network">
-        <div className="footer__social-network--facebook logo">
+        <a
+          href="https://www.facebook.com/Bohbazar17/"
+          target="_blank"
+          rel="noreferrer"
+          className="footer__social-network--facebook logo"
+        >
           <FaFacebookF />
-        </div>
-        <div className="footer__social-network--insta logo">
+        </a>
+        <a
+          href="https://www.instagram.com/bohbazar_/"
+          target="_blank"
+          rel="noreferrer"
+          className="footer__social-network--insta logo"
+        >
           <FaInstagram />
-        </div>
-        <div className="footer__social-network--whatsapp logo">
+        </a>
+        {/* <div className="footer__social-network--whatsapp logo">
           <FaWhatsapp />
-        </div>
+        </div> */}
       </div>
     </div>
   );

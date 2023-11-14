@@ -15,6 +15,8 @@ import ShoppingCart from "./pages/ShoppingCart";
 import { useState } from "react";
 import ScrollToTop from "./components/utils/ScrollToTop";
 import NotFound from "./pages/NotFound";
+import Cgv from "./pages/CGV";
+import LegalNotice from "./pages/LegalNotice";
 
 const baseURL = `${process.env.REACT_APP_API_URL}`;
 const instance = axios.create({
@@ -79,6 +81,8 @@ function App() {
             }
           />
           <Route path="/cart" element={<ShoppingCart />} />
+          <Route path="/conditions-generales-de-ventes" element={<Cgv />} />
+          <Route path="/mentions-legales" element={<LegalNotice />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

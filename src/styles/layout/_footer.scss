@@ -46,7 +46,10 @@
       &__list {
         font-family: "Trocchi";
         width: fit-content;
-        & > li {
+        display: flex;
+        flex-direction: column;
+        & > li,
+        a {
           margin-bottom: 5px;
           width: fit-content;
           font-size: 14px;
@@ -54,6 +57,10 @@
           @include laptop {
             font-size: 16px;
           }
+        }
+
+        & > a:hover {
+          text-decoration: underline;
         }
       }
     }
@@ -70,14 +77,14 @@
     }
     &--facebook {
     }
-    &--insta {
-      position: relative;
-      top: 4px;
-    }
-    &--whatsapp {
-      background-color: white;
-      color: black;
-    }
+    // &--insta {
+    //   position: relative;
+    //   top: 4px;
+    // }
+    // &--whatsapp {
+    //   background-color: white;
+    //   color: black;
+    // }
   }
 }
 

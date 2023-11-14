@@ -924,7 +924,7 @@ body {
 }
 .subcategories__subcategory > span {
   word-wrap: break-word;
-  min-width: 100%;
+  max-width: 90vw;
 }
 @media (min-width: 768px) {
   .subcategories__subcategory > span {
@@ -1046,17 +1046,24 @@ body {
   font-family: "Trocchi";
   width: -moz-fit-content;
   width: fit-content;
+  display: flex;
+  flex-direction: column;
 }
-.footer__nav__content__list > li {
+.footer__nav__content__list > li,
+.footer__nav__content__list a {
   margin-bottom: 5px;
   width: -moz-fit-content;
   width: fit-content;
   font-size: 14px;
 }
 @media (min-width: 1024px) {
-  .footer__nav__content__list > li {
+  .footer__nav__content__list > li,
+  .footer__nav__content__list a {
     font-size: 16px;
   }
+}
+.footer__nav__content__list > a:hover {
+  text-decoration: underline;
 }
 .footer__social-network {
   display: flex;
@@ -1069,15 +1076,6 @@ body {
     margin: auto;
   }
 }
-.footer__social-network--insta {
-  position: relative;
-  top: 4px;
-}
-.footer__social-network--whatsapp {
-  background-color: white;
-  color: black;
-}
-
 .logo {
   padding: 8px;
   border-radius: 50%;
@@ -2486,6 +2484,30 @@ body {
   .order-price-container__total {
     margin-bottom: 18px;
   }
+}
+
+.legal__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 30px;
+  font-family: "Trocchi";
+}
+@media (min-width: 768px) {
+  .legal__container {
+    margin: 10px 50px;
+  }
+}
+.legal__container > h1 {
+  font-family: "Sofia";
+}
+
+.legal__content {
+  font-size: 12px;
+  margin-bottom: 30px;
+}
+.legal__content > h2 {
+  font-size: 20px;
 }
 
 .not-found {
